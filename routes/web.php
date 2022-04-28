@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,8 +19,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::middleware('auth')->group(function(){
+    Route::get('/dashboard', [PageController::class, 'index']);
+
+    Route::resource('employee', EmployeeController::class);
+
+    Route::get('employee/datatable/ssd', [EmployeeController::class, 'ssd']);
+});
 
 require __DIR__.'/auth.php';
