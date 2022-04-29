@@ -29,9 +29,10 @@
         rel="stylesheet"
         />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-    
+        {{-- Data Table  --}}
         <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
-
+        {{-- Date Range  --}}
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     </head>
 
     <body class="font-sans antialiased">
@@ -52,7 +53,7 @@
                 </div>
             </div>
 
-            <main class="p-4">
+            <main class="p-4 content">
                 <div class="d-flex justify-content-center">
                     <div class="col-md-8">
                         {{ $slot }}
@@ -105,6 +106,9 @@
         <script type="text/javascript" src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js">
 
         </script>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
         
 
 

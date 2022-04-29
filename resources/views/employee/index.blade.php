@@ -2,6 +2,13 @@
     @section('title')
     <h4>Employee</h4>
     @endsection
+
+    <div class="mb-4" >
+        <a href="{{route('employee.create')}}" class="btn-theme btn-sm p-2">
+            <i class="fas fa-plus"></i> Create Employee
+        </a>
+    </div>
+
     <div class="card">
         <div class="card-body">
             <table class="table table-bordered Datatable">

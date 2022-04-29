@@ -4,6 +4,10 @@
   padding: 10px;
 }
 
+.btn-sm{
+  font-size: 1rem !important;
+}
+
 .page-item.active .page-link{
   background: #4CD185 !important;
 }
@@ -32,7 +36,7 @@
 
 .bottom-bar a{
     text-align: center;
-    padding: 15px;
+    padding: 5px 25px;
     color: #000;
 }
 
@@ -40,6 +44,13 @@
     font-size: 14px;
     text-transform: uppercase;
 }
+
+/* Content  */
+.content{
+  height: 85vh;
+  overflow: scroll;
+}
+
 
 /* -------side bar-------- */
 #show-sidebar{

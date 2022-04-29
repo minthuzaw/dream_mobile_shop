@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Department;
 use App\Models\User;
 
 use Yajra\Datatables\Datatables as Databases;
@@ -13,7 +14,8 @@ class EmployeeController extends Controller
         return view('employee.index');
     }
 
-    public function ssd(){
+    public function ssd()
+    {
         $employees = User::with('department');
         return Databases::of($employees)
         ->addColumn('department_name', function($employee){
@@ -29,4 +31,12 @@ class EmployeeController extends Controller
         ->rawColumns(['is_present'])
         ->make(true);
     }
+    
+    public function create()
+    {
+        $departments = Department::orderBy('title')->get();
+
+        return view('employee.create', compact('departments'));
+    }
+
 }
