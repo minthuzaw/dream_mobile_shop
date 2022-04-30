@@ -12,7 +12,15 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 // thuta
+
+
+// auth done
+// auth day 1
+//mtz
+
+// phone crud day 1
 Route::get('/', function () {
     return view('welcome');
 });
