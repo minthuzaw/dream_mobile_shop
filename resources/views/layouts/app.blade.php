@@ -1,36 +1,79 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<x-main>
+    <body id="page-top">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+    <!-- Page Wrapper -->
+    <div id="wrapper">
 
-        <!-- Fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+        <x-sidebar/>
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
 
-        <!-- Styles -->
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+            <!-- Main Content -->
+            <div id="content">
 
-        <!-- Scripts -->
-        <script src="{{ asset('js/app.js') }}" defer></script>
-    </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
+                <x-topbar/>
 
-            <!-- Page Heading -->
-            <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    @yield('content')
                 </div>
-            </header>
+                <!-- /.container-fluid -->
 
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+            </div>
+            <!-- End of Main Content -->
+
+            <x-footer/>
+
         </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{asset('js/app.js')}}"></script>
+    <!-- Bootstrap core JavaScript-->
+
+    <script src="{{asset('js/vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{asset('js/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+
+
+    <!-- Core plugin JavaScript-->
+    <script src="{{asset('js/vendor/jquery-easing/jquery.easing.js')}}"></script>
+
+
+    <!-- Page level plugins -->
+    <script src="{{asset('js/vendor/chart.js/Chart.min.js')}}"></script>
+
+
+    <!-- Page level custom scripts -->
+    <script src="{{asset('js/vendor/sb-admin-2.min.js')}}"></script>
+    <script src="{{asset('js/vendor/demo/chart-area-demo.js')}}"></script>
+    <script src="{{asset('js/vendor/demo/chart-pie-demo.js')}}"></script>
+
     </body>
-</html>
+</x-main>

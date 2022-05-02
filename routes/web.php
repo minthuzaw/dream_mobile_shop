@@ -14,18 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-// auth done
-// auth day 1
-//mtz
+Route::middleware('auth')->group(function () {
+    Route::get('/demo', function () {
+        return view('demo');
+    })->name('demo');
 
-// phone crud day 1
 
-Route::get('/', function () {
-    return view('welcome');
+    Route::resource('brands', \App\Http\Controllers\BrandController::class);
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
