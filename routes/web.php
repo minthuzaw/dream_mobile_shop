@@ -2,19 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-
-
 Route::middleware('auth')->group(function () {
     //show list
     Route::get('/demo',[\App\Http\Controllers\PhoneController::class,'index'])->name('demo');
@@ -24,11 +11,11 @@ Route::middleware('auth')->group(function () {
     Route::post('/phones/store',[\App\Http\Controllers\PhoneController::class,'store'])->name('phones.store');
 
     //edit and update
-    Route::get('/phones/edit/{phone}',[\App\Http\Controllers\PhoneController::class,'edit'])->name('phones.edit');
-    Route::put('/phones/edited/{phone}',[\App\Http\Controllers\PhoneController::class,'update'])->name('phones.update');
+    Route::get('/phones/{phone}/edit',[\App\Http\Controllers\PhoneController::class,'edit'])->name('phones.edit');
+    Route::put('/phones/{phone}/edited',[\App\Http\Controllers\PhoneController::class,'update'])->name('phones.update');
 
     //delete
-    Route::delete('/phones/delete/{phone}',[\App\Http\Controllers\PhoneController::class,'destroy'])->name('phones.delete');
+    Route::delete('/phones/{phone}/delete',[\App\Http\Controllers\PhoneController::class,'destroy'])->name('phones.delete');
 
     //    Route::get('/demo', function () {
     //        return view('demo');

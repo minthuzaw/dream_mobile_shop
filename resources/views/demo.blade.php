@@ -21,7 +21,7 @@
                     @forelse($phones as $phone)
                         <tr>
                             <td>{!! $loop->iteration !!}</td>
-                            <td>{!! $phone->modle !!}</td>
+                            <td>{!! $phone->model !!}</td>
                             <td>{!! $phone->name !!}</td>
                             <td>{!! $phone->stock !!}</td>
                             <td>{!! $phone->unit_price !!}</td>
