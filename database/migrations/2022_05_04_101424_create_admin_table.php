@@ -13,16 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('phones', function (Blueprint $table) {
+        Schema::create('admin', function (Blueprint $table) {
             $table->id();
-            $table->string('model')->nullable();
             $table->string('name');
-            $table->integer('stock');
-            $table->foreignId('brand_id');
-            $table->float('unit_price');
-            $table->foreignId('admin_id');
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->integer('mobile_number');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -33,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('phones');
+        Schema::dropIfExists('admin');
     }
 };
