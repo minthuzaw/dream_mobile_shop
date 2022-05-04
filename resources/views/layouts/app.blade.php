@@ -23,7 +23,6 @@
             <!-- End of Main Content -->
 
             <x-footer/>
-
         </div>
         <!-- End of Content Wrapper -->
 
