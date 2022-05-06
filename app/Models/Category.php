@@ -24,4 +24,10 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
+
+    protected $guarded = [];
+
+    public function phone(){
+        return $this->belongsToMany(Phone::class);
+    }
 }

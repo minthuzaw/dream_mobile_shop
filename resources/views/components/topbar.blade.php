@@ -173,7 +173,7 @@
                     Product
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <li><a class="dropdown-item" href="#">Add New Product</a></li>
+                        <li><a class="dropdown-item" href="{{route('phones.create')}}">Add New Product</a></li>
                         <li><a class="dropdown-item" href="#">Category</a></li>
 
                 </ul>

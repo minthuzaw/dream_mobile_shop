@@ -24,4 +24,10 @@ use Illuminate\Database\Eloquent\Model;
 class Brand extends Model
 {
     use HasFactory;
+
+    protected $guarded = [];
+
+    public function phone(){
+        return $this->hasMany(Phone::class);
+    }
 }

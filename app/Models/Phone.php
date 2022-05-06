@@ -34,4 +34,18 @@ use Illuminate\Database\Eloquent\Model;
 class Phone extends Model
 {
     use HasFactory;
+
+    protected $guarded = [];
+
+    public function brand(){
+        return $this->belongsTo(Brand::class);
+    }
+
+    public function category(){
+        return $this->belongsToMany(Category::class);
+    }
+
+    public function admin(){
+        return $this->belongsTo(Admin::class);
+    }
 }
