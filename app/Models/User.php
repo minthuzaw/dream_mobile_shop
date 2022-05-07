@@ -21,6 +21,16 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'employee_id',
+        'phone',
+        'nrc_number',
+        'gender',
+        'birthday',
+        'address',
+        'department_id',
+        'date_of_join',
+        'is_present',
+        'profile_img'
     ];
 
     /**
@@ -42,7 +52,20 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function department(){
+    public function department()
+    {
         return $this->belongsTo(Department::class);
+    }
+
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = bcrypt($value);
+    }
+
+    public function profile_img_path()
+    {
+        if ($this->profile_img) {
+            // return asset('')
+        }
     }
 }
