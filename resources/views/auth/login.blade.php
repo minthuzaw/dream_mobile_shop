@@ -4,7 +4,9 @@
         <div class="row">
             <div class="offset-md-4 col-md-4 card p-4">
                 <h4>Login</h4>
-
+                @if (session('message'))
+                    <div class="alert alert-danger">{{ session('message') }}</div>
+                @endif
                 <form action="{{route('login')}}" method="POST">
                     @csrf
 
