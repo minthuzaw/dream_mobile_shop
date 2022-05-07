@@ -128,7 +128,9 @@
             $("#show-sidebar").click(function() {
             $(".page-wrapper").addClass("toggled");
             });
-            @if(session('create')){
+
+            @if(session('create'))
+            {
                 Swal.fire(
                 'Good job!',
                 'You clicked the button!',
@@ -136,19 +138,20 @@
                 )
             }
             @endif
-
-            @if(session('updated')){
+                
+            @if(session('updated'))
+            {
                 Swal.fire(
-                'Updated Successfully',
-                'You clicked the button!',
-                'success'
-                )
+                    'Updated Successfully',
+                    'You clicked the button!',
+                    'success'
+                    )
             }
             @endif
-});
-    </script>
-
-    @yield('scripts')
+                    @yield('scripts')
+                });
+                    </script>
+                    
 </body>
 
 </html>

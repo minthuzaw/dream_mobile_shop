@@ -57,7 +57,7 @@ class EmployeeController extends Controller
     public function store(EmployeeRequest $request)
     {
         $attributes = $request->validated();
-        $attributes['profile_img'] = $request->file('profile_img')->store('employee_pf');
+        $attributes['profile_img'] = $request->file('profile_img')->store('employee');
         User::create($attributes);
 
         return redirect()->route('employee.index')->with('create', 'Employee created successfully');
@@ -72,9 +72,16 @@ class EmployeeController extends Controller
     public function update(EmployeeUpdateRequest $request, User $employee)
     {
         $attributes = $request->validated();
-        $employee->update($attributes);
 
+        if($request->hasFile('profile_img')){
+            Storage::delete('storage/' .$employee->profile_img);
+
+            $attributes['profile_img'] = $request->file('profile_img')->store('employee');
+        }
+
+        $employee->update($attributes);
         return redirect()->route('employee.index')->with('updated', 'Updated At Successfully');
+
     }
 
     public function show(User $employee)
