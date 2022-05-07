@@ -15,10 +15,11 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->integer('quantity');
             $table->float('total');
             $table->string('customer_name');
             $table->string('customer_mobile_number');
-            $table->foreignId('cashier_id');
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
             $table->softDeletes();
         });

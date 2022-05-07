@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('category_phone', function (Blueprint $table){
-            $table->foreignId('category_id');
-            $table->foreignId('phone_id');
+            $table->foreignId('category_id')->constrained();
+            $table->foreignId('phone_id')->constrained();
             $table->timestamps();
             $table->softDeletes();
         });
