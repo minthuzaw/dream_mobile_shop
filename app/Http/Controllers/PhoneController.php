@@ -2,52 +2,58 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\phoneCreateRequest;
+use App\Http\Requests\phoneUpdateRequest;
+use App\Models\Brand;
 use App\Models\Phone;
 use Illuminate\Http\Request;
 
 class PhoneController extends Controller
 {
-    //show list
+    // phones.index
     public function index(){
-        $phones=Phone::all();
-        return view('demo',['phones'=>$phones]);
+        $phones = Phone::all();
+
+        return view('demo', compact('phones'));
     }
-    //create and store
+
+    // phones.create
     public function create(){
-        return view('Products.create');
+        $brands = Brand::get()->pluck('name','id');
+        return view('products.create', compact('brands'));
     }
-    public function store(Request $request){
-        $newProduct=Phone::create([
-            'model'=>$request->model,
-            'name'=>$request->name,
-            'stock'=>$request->stock,
-            'brand_id'=>$request->brand_id,
-            'unit_price'=>$request->unit_price,
-            'admin_id'=>$request->admin_id
+
+    // phone store 
+    public function store(phoneCreateRequest $request){
+        $attributes = $request->validated();
+
+        Phone::create($attributes + [
+            'user_id' => auth()->id()
         ]);
-        return redirect()->route('demo');
+
+        return redirect()->route('phones.index')->with('success', 'Phone Created Successfully');
     }
-    //edit and update
+
+    // edit
     public function edit(Phone $phone){
-        return view('Products.edit',[
-            'phone'=>$phone
-        ]);
+        $brands = Brand::get()->pluck('name','id');
+        return view('products.edit', compact('phone', 'brands'));
     }
-    public function update(Phone $phone, Request $request){
-        $phone->update([
-            'model'=>$request->model,
-            'name'=>$request->name,
-            'stock'=>$request->stock,
-            'brand_id'=>$request->brand_id,
-            'unit_price'=>$request->unit_price,
-            'admin_id'=>$request->admin_id
-        ]);
-        return redirect()->route('demo');
+
+    //update
+    public function update(phoneUpdateRequest $request, Phone $phone){
+        $attributes = $request->validated();
+
+        $phone->update($attributes);
+
+        return redirect()->route('phones.index')->with('updated', 'Phone Updated Successfully');
     }
-    //delete
+
+    // destroy
     public function destroy(Phone $phone){
+
         $phone->delete();
-        return redirect()->route('demo');
+        return back()->with('deleted', 'Deleted Successfully');
     }
 
 }

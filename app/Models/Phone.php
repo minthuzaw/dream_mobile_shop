@@ -45,7 +45,7 @@ class Phone extends Model
         return $this->belongsToMany(Category::class);
     }
 
-    public function admin(){
-        return $this->belongsTo(Admin::class);
+    public function user(){
+        return $this->belongsTo(User::class);
     }
 }

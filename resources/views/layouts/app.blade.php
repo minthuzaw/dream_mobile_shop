@@ -73,6 +73,8 @@
     <script src="{{asset('js/vendor/sb-admin-2.min.js')}}"></script>
     <script src="{{asset('js/vendor/demo/chart-area-demo.js')}}"></script>
     <script src="{{asset('js/vendor/demo/chart-pie-demo.js')}}"></script>
-
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="sweetalert2.min.js"></script>
+    @yield('script')
     </body>
 </x-main>
