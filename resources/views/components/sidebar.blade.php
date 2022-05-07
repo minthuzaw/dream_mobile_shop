@@ -14,7 +14,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="{{route('demo')}}">
+        <a class="nav-link" href="{{route('phones.index')}}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Demo</span></a>
     </li>

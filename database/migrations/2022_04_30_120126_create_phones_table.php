@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('stock');
             $table->foreignId('brand_id');
             $table->float('unit_price');
-            $table->foreignId('admin_id');
+            $table->foreignId('user_id');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -28,7 +28,7 @@
                             <td style="display: flex">
                                 <a href="{{route('phones.edit',$phone->id)}}"class="btn btn-outline-primary" >Edit</a>
 
-                                <form action="{{route('phones.delete',$phone->id)}}" method="POST">
+                                <form action="{{route('phones.destroy',$phone->id)}}" method="POST">
                                     @method('DELETE')
                                     @csrf
                                     <button type="submit" class="btn btn-outline-danger ml-1">Delete</button>
@@ -47,4 +47,32 @@
         </div>
     </div>
 
+@endsection
+@section('script')
+	<script>
+
+		@if (session('success'))
+		Swal.fire({
+            icon: 'success',
+            title: 'Good Job',
+            text: "{{session('success')}}",
+            })
+		@endif
+
+        @if (session('deleted'))
+		Swal.fire({
+            icon: 'success',
+            title: 'Deleted',
+            text: "{{session('deleted')}}",
+            })
+		@endif
+
+        @if (session('updated'))
+		Swal.fire({
+            icon: 'success',
+            title: 'Updated',
+            text: "{{session('updated')}}",
+            })
+		@endif
+	</script>
 @endsection
