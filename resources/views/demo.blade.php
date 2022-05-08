@@ -40,7 +40,7 @@
                                     <button type="submit" class="btn btn-outline-danger ml-1">Delete</button>
                                 </form>
                             </td>
-                            <td>{{ $phone->created_at->diffForhumans() }}</td>
+                            <td>{{ $phone->created_at?->diffForhumans() }}</td>
                         </tr>
                         @empty
                         <tr>

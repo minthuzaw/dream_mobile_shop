@@ -172,19 +172,9 @@
 {{--                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>--}}
 {{--            </div>--}}
 {{--        </li>--}}
-        <li class="nav-item dropdown my-3">
-            <div class="dropdown">
-                <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                    Product
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <li><a class="dropdown-item" href="{{route('phones.create')}}">Add New Product</a></li>
-                        <li><a class="dropdown-item" href="#">Category</a></li>
-
-                </ul>
-            </div>
-        </li>
-
+        @if(Auth::user()->role == 'stocker' || Auth::user()->role == 'admin')
+            <x-add-phones-button/>
+        @endif
         <div class="topbar-divider d-none d-sm-block"></div>
 
 
