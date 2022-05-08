@@ -24,6 +24,5 @@ class CheckRole
         }
 
         return redirect(route('phones.index'));
-        /* return response()->view('errors.check-permission'); */
     }
 }

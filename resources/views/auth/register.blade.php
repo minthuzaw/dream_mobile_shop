@@ -6,6 +6,7 @@
                 <h4>Register</h4>
 
                 <form action="{{route('users.store')}}" method="POST">
+
                     @csrf
                     <div class="form-group">
                         <label for="name">Name</label>

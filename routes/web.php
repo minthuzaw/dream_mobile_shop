@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::middleware('auth')->group(function () {
+
     Route::resource('phones', PhoneController::class);
     Route::resource('brands', BrandController::class);
 
@@ -20,5 +21,4 @@ Route::middleware('auth')->group(function () {
 
     });
 });
-
 require __DIR__ . '/auth.php';

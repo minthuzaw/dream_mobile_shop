@@ -15,6 +15,7 @@
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
         <a class="nav-link" href="{{ Auth::user()->isAdmin() ? route('users.index') : route('phones.index') }}">
+
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Home</span></a>
     </li>
@@ -41,6 +42,7 @@
                 @else
                 <a class="collapse-item" href="{{route('brands.create')}}">Add New Brands</a>
                 @endif
+
             </div>
         </div>
 
@@ -57,6 +59,7 @@
                 @else
                 <a class="collapse-item" href="{{route('phones.create')}}">Add New Products</a>
                 @endif
+
             </div>
         </div>
     </li>
@@ -65,10 +68,12 @@
     <hr class="sidebar-divider">
 
     @if(Auth::user()->isAdmin())
+
         <x-admin-sidebar/>
     @endif
 
     <!-- Sidebar Toggler (Sidebar) -->
+
     <div class="text-center d-flex h-100 justify-content-center">
         <div class="align-self-end pb-5">
             <button class="rounded-circle border-0" id="sidebarToggle"></button>

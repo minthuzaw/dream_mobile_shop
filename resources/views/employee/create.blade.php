@@ -67,9 +67,11 @@
 
                     <div class="d-flex justify-content-center mt-2">
                         <button type="submit" class="btn btn-primary">Create</button>
+
                     </div>
                 </form>
             </div>
         </div>
     </div>
 @endsection
+

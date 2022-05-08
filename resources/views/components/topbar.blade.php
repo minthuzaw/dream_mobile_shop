@@ -172,6 +172,7 @@
 {{--                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>--}}
 {{--            </div>--}}
 {{--        </li>--}}
+
         <div class="topbar-divider d-none d-sm-block"></div>
 
 
