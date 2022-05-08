@@ -23,14 +23,13 @@ class PhoneController extends Controller
         return view('products.create', compact('brands'));
     }
 
-    // phone store 
+    // phone store
     public function store(phoneCreateRequest $request){
         $attributes = $request->validated();
 
         Phone::create($attributes + [
             'user_id' => auth()->id()
         ]);
-
         return redirect()->route('phones.index')->with('success', 'Phone Created Successfully');
     }
 
