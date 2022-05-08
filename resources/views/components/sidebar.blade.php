@@ -42,7 +42,6 @@
                 @else
                 <a class="collapse-item" href="{{route('brands.create')}}">Add New Brands</a>
                 @endif
-
             </div>
         </div>
 
