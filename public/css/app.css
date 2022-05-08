@@ -1364,3 +1364,6 @@ select {
   padding: 3px;
 
 }
+.table tbody{
+  vertical-align: middle;
+}

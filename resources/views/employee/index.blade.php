@@ -9,18 +9,18 @@
         </a>
     </div>
 
-    <div class="card">
-        <div class="card-body">
-            <table class="table table-bordered Datatable" style="width:100%">
+    <div class="card ">
+        <div class="card-body ">
+            <table class="table table-bordered Datatable " style="width:100%;">
                 <thead>
                     <th class="text-center no-order no-search"></th>
+                    <th class="text-center no-order no-search"></th>
                     <th class="text-center">Employee ID</th>
-                    <th class="text-center">Name</th>
                     <th class="text-center">Phone</th>
                     <th class="text-center">Email</th>
                     <th class="text-center">Department</th>
                     <th class="text-center">Is_Present?</th>
-                    <th class="text-center">Action</th>
+                    <th class="text-center no-order no-search">Action</th>
                     <th class="text-center hidden no-sort no-search ">Updated at</th>
                 </thead>
 
@@ -30,15 +30,15 @@
     @section('scripts')
     <script>
         $(document).ready(function(){
-                $('.Datatable').DataTable({
+                var table = $('.Datatable').DataTable({
                     processing: true,
                     serverSide: true,
                     responsive: true,
                     ajax: 'employee/datatable/ssd',
                     columns: [
                         { data: 'fas fa-plus', name: 'fas fa-plus', class: 'text-center'},
+                        { data: 'profile_img', name: 'profile_img', class: 'text-center' },
                         { data: 'employee_id', name: 'employee_id', class: 'text-center' },
-                        { data: 'name', name: 'name', class: 'text-center' },
                         { data: 'phone', name: 'phone', class: 'text-center' },
                         { data: 'email', name: 'email', class: 'text-center' },
                         { data: 'department_name', name: 'department_name', class: 'text-center' },
@@ -78,6 +78,32 @@
                     "processing": "<img src='/image/loading.gif' style='width: 50%; height: 50%;  text-align: center;' />"
                 }
             });
+
+            $(document).on('click', '.delete-btn', function(event){
+                event.preventDefault();
+                var id = $(this).data('id');
+                
+
+                swal({
+                    title: "Are you sure?",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                    if (willDelete) {
+                        $.ajax({
+                            method: "DELETE",
+                            url: `/employee/${id}`,
+                            data: { name: "John", location: "Boston" }
+                            })
+                            .done(function( response ) {
+                                table.ajax.reload();
+                            });
+                    }
+                    });
+            })
+
             })
     </script>
     @endsection

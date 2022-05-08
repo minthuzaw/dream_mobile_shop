@@ -546,3 +546,12 @@ div.dataTables_wrapper div.dataTables_length, div.dataTables_wrapper div.dataTab
   .dash-border{
     border-left: 2px dashed gray;
   }
+
+  .profile-thumbnail{
+    width: 80%;
+    height: 80%;
+    border-radius: 10%;
+    border: 1px solid #ddd;
+  }
+
+  mark{background:orange;color:black;}
