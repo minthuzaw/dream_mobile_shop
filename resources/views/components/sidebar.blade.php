@@ -14,7 +14,8 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="{{ Auth::user()->role == 'admin' ? route('users.index') : route('phones.index') }}">
+        <a class="nav-link" href="{{ Auth::user()->isAdmin() ? route('users.index') : route('phones.index') }}">
+
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Home</span></a>
     </li>
@@ -36,8 +37,12 @@
         </a>
         <div id="collapseBrands" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
+                @if(Auth::user()->isCashier())
                 <a class="collapse-item" href="{{route('brands.index')}}">View Brands</a>
+                @else
                 <a class="collapse-item" href="{{route('brands.create')}}">Add New Brands</a>
+                @endif
+
             </div>
         </div>
 
@@ -49,8 +54,12 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Products:</h6>
+                @if(Auth::user()->isCashier())
                 <a class="collapse-item" href="{{ route('phones.index') }}">View Products</a>
+                @else
                 <a class="collapse-item" href="{{route('phones.create')}}">Add New Products</a>
+                @endif
+
             </div>
         </div>
     </li>
@@ -58,12 +67,12 @@
     <!-- Divider -->
     <hr class="sidebar-divider">
 
-    @if(Auth::user()->role == 'admin')
+    @if(Auth::user()->isAdmin())
+
         <x-admin-sidebar/>
     @endif
 
     <!-- Sidebar Toggler (Sidebar) -->
-    
 
     <div class="text-center d-flex h-100 justify-content-center">
         <div class="align-self-end pb-5">
