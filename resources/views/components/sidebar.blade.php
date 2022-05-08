@@ -14,7 +14,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="{{ Auth::user()->role == 'admin' ? route('users.index') : route('phones.index') }}">
+        <a class="nav-link" href="{{ Auth::user()->isAdmin() ? route('users.index') : route('phones.index') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Home</span></a>
     </li>
@@ -58,7 +58,7 @@
     <!-- Divider -->
     <hr class="sidebar-divider">
 
-    @if(Auth::user()->role == 'admin')
+    @if(Auth::user()->isAdmin())
         <x-admin-sidebar/>
     @endif
 

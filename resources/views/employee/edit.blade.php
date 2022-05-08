@@ -1,13 +1,14 @@
-<x-main>
-    <body>
-    <div class="container mt-5">
-        <div class="row">
-            <div class="offset-md-4 col-md-4 card p-4">
-                <h4>Register</h4>
+@extends('layouts.app')
 
-                <form action="{{route('users.update',$user->id)}}" method="POST">
+@section('content')
+    <x-page-header header="Create New Employee Account" />
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center pt-2">
+                <form action="{{route('users.store')}}" method="POST" class="border p-3 mt-2 col-6">
                     @csrf
-                    <div class="form-group">
+                    <div class="control-group text-left">
                         <label for="name">Name</label>
                         <input type="text" class="form-control" id="name"
                                placeholder="Someone" name="name" value="{{$user->name}}">
@@ -16,7 +17,7 @@
                         @enderror
                     </div>
 
-                    <div class="form-group">
+                    <div class="control-group text-left mt-2">
                         <label for="email">Email</label>
                         <input type="email" class="form-control" id="email"
                                placeholder="someone@somewhere.com" name="email" value="{{$user->email}}">
@@ -25,7 +26,7 @@
                         @enderror
                     </div>
 
-                    <div class="form-group">
+                    <div class="control-group text-left mt-2">
                         <label for="password">Password</label>
                         <input type="password" class="form-control" id="password" name="password">
                         @error('password')
@@ -33,7 +34,7 @@
                         @enderror
                     </div>
 
-                    <div class="form-group">
+                    <div class="control-group text-left mt-2">
                         <label for="confirm_password">Confirm Password</label>
                         <input type="password" class="form-control" id="confirm_password"
                                name="password_confirmation">
@@ -42,8 +43,8 @@
                         @enderror
                     </div>
 
-                    <div class="form-group">
-                        <label for="phone_number">Email</label>
+                    <div class="control-group text-left mt-2">
+                        <label for="phone_number">Phone Number</label>
                         <input type="number" class="form-control" id="phone_number"
                                placeholder="09199292939" name="phone_number" value="{{$user->phone_number}}">
                         @error('phone_number')
@@ -51,7 +52,7 @@
                         @enderror
                     </div>
 
-                    <div class="form-group">
+                    <div class="control-group text-left mt-2">
                         <label for="role">Role</label>
                         <select class="form-control form-select" aria-label="Default select example" name="role">
                             <option disabled>Select Role</option>
@@ -64,17 +65,11 @@
                         @enderror
                     </div>
 
-                    <div class="d-flex justify-content-center">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
                     <div class="d-flex justify-content-center mt-2">
-                        <small>Already have an account? <a href="{{route('login')}}">login</a> here</small>
+                        <button type="submit" class="btn btn-primary">Create</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-    </body>
-
-</x-main>
-
+@endsection

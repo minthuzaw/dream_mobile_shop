@@ -11,7 +11,7 @@
         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
         <div class="input-group">
             @if (request('brand'))
-            
+
             <input type="hidden" value="{{request('brand')}}" name="brand">
             @endif
 
@@ -172,9 +172,6 @@
 {{--                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>--}}
 {{--            </div>--}}
 {{--        </li>--}}
-        @if(Auth::user()->role == 'stocker' || Auth::user()->role == 'admin')
-            <x-add-phones-button/>
-        @endif
         <div class="topbar-divider d-none d-sm-block"></div>
 
 
