@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\phoneCreateRequest;
-use App\Http\Requests\phoneUpdateRequest;
+
+use App\Http\Requests\PhoneCreateRequest;
+use App\Http\Requests\PhoneUpdateRequest;
 use App\Models\Brand;
 use App\Models\Phone;
 use Illuminate\Http\Request;
@@ -24,7 +25,7 @@ class PhoneController extends Controller
     }
 
     // phone store
-    public function store(phoneCreateRequest $request){
+    public function store(PhoneCreateRequest $request){
         $attributes = $request->validated();
 
         Phone::create($attributes + [
@@ -40,7 +41,7 @@ class PhoneController extends Controller
     }
 
     //update
-    public function update(phoneUpdateRequest $request, Phone $phone){
+    public function update(PhoneUpdateRequest $request, Phone $phone){
         $attributes = $request->validated();
 
         $phone->update($attributes);
