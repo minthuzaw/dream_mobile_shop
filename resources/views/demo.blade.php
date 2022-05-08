@@ -30,7 +30,7 @@
                             <td>{!! $phone->model !!}</td>
                             <td>{!! $phone->name !!}</td>
                             <td>{!! $phone->stock !!}</td>
-                            <td>{!! $phone->unit_price !!}</td>
+                            <td>${!! $phone->unit_price !!}</td>
                             <td style="display: flex">
                                 @if(Auth::user()->isAdmin() or Auth::user()->isStocker())
                                 <a href="{{route('phones.edit',$phone->id)}}"class="btn btn-outline-primary" >Edit</a>

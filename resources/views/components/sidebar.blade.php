@@ -36,8 +36,11 @@
         </a>
         <div id="collapseBrands" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
+                @if(Auth::user()->isCashier())
                 <a class="collapse-item" href="{{route('brands.index')}}">View Brands</a>
+                @else
                 <a class="collapse-item" href="{{route('brands.create')}}">Add New Brands</a>
+                @endif
             </div>
         </div>
 
@@ -49,8 +52,11 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Products:</h6>
+                @if(Auth::user()->isCashier())
                 <a class="collapse-item" href="{{ route('phones.index') }}">View Products</a>
+                @else
                 <a class="collapse-item" href="{{route('phones.create')}}">Add New Products</a>
+                @endif
             </div>
         </div>
     </li>
