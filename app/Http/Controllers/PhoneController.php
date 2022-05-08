@@ -12,9 +12,10 @@ class PhoneController extends Controller
 {
     // phones.index
     public function index(){
-        $phones = Phone::all();
-
-        return view('demo', compact('phones'));
+        
+        $phones = Phone::latest()->filter(request(['search', 'brand']))->get();
+        $brands = Brand::all();
+        return view('demo', compact('phones', 'brands'));
     }
 
     // phones.create

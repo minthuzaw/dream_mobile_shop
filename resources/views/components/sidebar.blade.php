@@ -63,6 +63,8 @@
     @endif
 
     <!-- Sidebar Toggler (Sidebar) -->
+    
+
     <div class="text-center d-flex h-100 justify-content-center">
         <div class="align-self-end pb-5">
             <button class="rounded-circle border-0" id="sidebarToggle"></button>
