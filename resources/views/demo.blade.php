@@ -1,7 +1,13 @@
+{{-- @dd($brands[0]->name); --}}
 @extends('layouts.app')
 
 @section('content')
+
+    {{-- brand filter component  --}}
+    <x-brandsFilter :brands="$brands"></x-brandsFilter>
+
     <x-page-header header="Product"/>
+
     <div class="container">
         <div class="row">
             <div class="col-12 text-center">
@@ -24,8 +30,9 @@
                             <td>{!! $phone->model !!}</td>
                             <td>{!! $phone->name !!}</td>
                             <td>{!! $phone->stock !!}</td>
-                            <td>{!! $phone->unit_price !!}</td>
+                            <td>${!! $phone->unit_price !!}</td>
                             <td style="display: flex">
+                                @if(Auth::user()->isAdmin() or Auth::user()->isStocker())
                                 <a href="{{route('phones.edit',$phone->id)}}"class="btn btn-outline-primary" >Edit</a>
 
                                 <form action="{{route('phones.destroy',$phone->id)}}" method="POST">
@@ -33,8 +40,11 @@
                                     @csrf
                                     <button type="submit" class="btn btn-outline-danger ml-1">Delete</button>
                                 </form>
+                                @else
+                                <a href=""class="btn btn-outline-primary" >Order</a>
+                                @endif
                             </td>
-                            <td>{{ $phone->created_at->diffForhumans() }}</td>
+                            <td>{{ $phone->created_at?->diffForhumans() }}</td>
                         </tr>
                         @empty
                         <tr>

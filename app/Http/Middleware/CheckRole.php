@@ -4,6 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Collection;
 
 class CheckRole
 {
@@ -14,17 +16,13 @@ class CheckRole
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next, $role1, $role2 = null)
     {
-        if (auth()->check() && auth()->user()->role != 'admin') {
-
-
-            auth()->logout();
-
-
-            return redirect()->route('login')->withMessage('hal hal hal sa tar pr byar');
+        $roles = collect([$role1, $role2]);
+        if ($roles->contains(Auth::user()->role)) {
+            return $next($request);
         }
 
-        return $next($request);
+        return redirect(route('phones.index'));
     }
 }

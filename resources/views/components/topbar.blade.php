@@ -10,8 +10,13 @@
     <form
         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
         <div class="input-group">
+            @if (request('brand'))
+
+            <input type="hidden" value="{{request('brand')}}" name="brand">
+            @endif
+
             <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                   aria-label="Search" aria-describedby="basic-addon2">
+                   aria-label="Search" aria-describedby="basic-addon2" name="search">
             <div class="input-group-append">
                 <button class="btn btn-primary" type="button">
                     <i class="fas fa-search fa-sm"></i>
@@ -167,18 +172,6 @@
 {{--                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>--}}
 {{--            </div>--}}
 {{--        </li>--}}
-        <li class="nav-item dropdown my-3">
-            <div class="dropdown">
-                <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                    Product
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <li><a class="dropdown-item" href="{{route('phones.create')}}">Add New Product</a></li>
-                        <li><a class="dropdown-item" href="#">Category</a></li>
-
-                </ul>
-            </div>
-        </li>
 
         <div class="topbar-divider d-none d-sm-block"></div>
 

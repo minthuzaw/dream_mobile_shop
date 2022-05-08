@@ -48,4 +48,17 @@ class Phone extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+
+    public function scopeFilter($query, $filter){
+        $query->when($filter['search'] ?? false, function($query, $search){
+            $query->where('name', 'LIKE', '%'.$search.'%')
+                  ->orWhere('model', 'LIKE', '%'.$search.'%');
+        });
+
+        $query->when($filter['brand'] ?? false, function($query, $brand){
+            $query->whereHas('brand', function($query) use ($brand){
+                $query->where('name', $brand);
+            });
+        });
+    }
 }
