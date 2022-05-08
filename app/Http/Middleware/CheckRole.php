@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CheckRole
 {
@@ -14,17 +15,15 @@ class CheckRole
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next, $role, $role2 = null)
     {
-        if (auth()->check() && auth()->user()->role != 'admin') {
-
-
-            auth()->logout();
-
-
-            return redirect()->route('login')->withMessage('hal hal hal sa tar pr byar');
+        {
+            if(auth()->user()->role == $role or auth()->user()->role == $role2){
+                return $next($request);
+            }
+            Auth::logout();
+            return abort(404);
+            /* return response()->view('errors.check-permission'); */
         }
-
-        return $next($request);
     }
 }

@@ -5,7 +5,7 @@
             <div class="offset-md-4 col-md-4 card p-4">
                 <h4>Register</h4>
 
-                <form action="{{route('employee.store')}}" method="POST">
+                <form action="{{route('users.store')}}" method="POST">
                     @csrf
                     <div class="form-group">
                         <label for="name">Name</label>

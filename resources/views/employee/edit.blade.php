@@ -5,12 +5,12 @@
             <div class="offset-md-4 col-md-4 card p-4">
                 <h4>Register</h4>
 
-                <form action="{{route('employee.store')}}" method="POST">
+                <form action="{{route('users.update',$user->id)}}" method="POST">
                     @csrf
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" class="form-control" id="name"
-                               placeholder="Someone" name="name" value="{{old('name')}}">
+                               placeholder="Someone" name="name" value="{{$user->name}}">
                         @error('name')
                         <small class="text-danger">{{$message}}</small>
                         @enderror
@@ -19,7 +19,7 @@
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input type="email" class="form-control" id="email"
-                               placeholder="someone@somewhere.com" name="email" value="{{old('email')}}">
+                               placeholder="someone@somewhere.com" name="email" value="{{$user->email}}">
                         @error('email')
                         <small class="text-danger">{{$message}}</small>
                         @enderror
@@ -45,7 +45,7 @@
                     <div class="form-group">
                         <label for="phone_number">Email</label>
                         <input type="number" class="form-control" id="phone_number"
-                               placeholder="09199292939" name="phone_number" value="{{old('phone_number')}}">
+                               placeholder="09199292939" name="phone_number" value="{{$user->phone_number}}">
                         @error('phone_number')
                         <small class="text-danger">{{$message}}</small>
                         @enderror
@@ -54,10 +54,10 @@
                     <div class="form-group">
                         <label for="role">Role</label>
                         <select class="form-control form-select" aria-label="Default select example" name="role">
-                            <option disabled selected>Select Role</option>
-                            <option value="admin">admin</option>
-                            <option value="cashier">cashier</option>
-                            <option value="stocker">stocker</option>
+                            <option disabled>Select Role</option>
+                            <option value="admin" {{ $user->role == 'admin' ? 'selected' : '' }}>admin</option>
+                            <option value="cashier" {{ $user->role == 'cashier' ? 'selected' : '' }}>cashier</option>
+                            <option value="stocker" {{ $user->role == 'stocker' ? 'selected' : '' }}>stocker</option>
                         </select>
                         @error('role')
                         <small class="text-danger">{{$message}}</small>

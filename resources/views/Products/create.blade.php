@@ -41,7 +41,7 @@
 						@foreach ($brands as $id => $brand)
 							<option value="{{$id}}">{{$brand}}</option>
 						@endforeach
-					  </select>
+                    </select>
 				</div>
 
                 <div class="control-group  text-left mt-2">
