@@ -1,7 +1,13 @@
+{{-- @dd($brands[0]->name); --}}
 @extends('layouts.app')
 
 @section('content')
+
+    {{-- brand filter component  --}}
+    <x-brandsFilter :brands="$brands"></x-brandsFilter>
+
     <x-page-header header="Product"/>
+    
     <div class="container">
         <div class="row">
             <div class="col-12 text-center">
