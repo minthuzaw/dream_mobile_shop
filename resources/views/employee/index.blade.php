@@ -27,7 +27,6 @@
                             <td>{!! $user->role !!}</td>
                             <td style="display: flex">
                                 <a href="{{route('users.edit',$user->id)}}" class="btn btn-outline-primary" >Edit</a>
-
                                 <form action="{{route('users.destroy',$user->id)}}" method="POST">
                                     @method('DELETE')
                                     @csrf
@@ -43,4 +42,40 @@
         </div>
     </div>
 
+@endsection
+@section('script')
+    <script>
+
+        @if (session('success'))
+        Swal.fire({
+            icon: 'success',
+            title: 'Good Job',
+            text: "{{session('success')}}",
+        })
+        @endif
+
+        @if (session('deleted'))
+        Swal.fire({
+            icon: 'success',
+            title: 'Deleted',
+            text: "{{session('deleted')}}",
+        })
+        @endif
+
+        @if (session('updated'))
+        Swal.fire({
+            icon: 'success',
+            title: 'Updated',
+            text: "{{session('updated')}}",
+        })
+        @endif
+
+        @if (session('error'))
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: "{{session('error')}}",
+        })
+        @endif
+    </script>
 @endsection
