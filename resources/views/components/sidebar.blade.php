@@ -43,7 +43,6 @@
                     <a class="collapse-item" href="{{route('brands.index')}}">View Brands</a>
                     <a class="collapse-item" href="{{route('brands.create')}}">Add New Brands</a>
                 @endif
-
             </div>
         </div>
 
