@@ -7,6 +7,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules;
 
 class UserController extends Controller
 {
@@ -41,7 +42,7 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:employee'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'phone_number' => ['required', 'numeric', 'min:10'],
             'role' => ['required', 'string'],
@@ -92,9 +93,21 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $attributes = $request->validated();
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,'.$id],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'phone_number' => ['required', 'numeric', 'min:10'],
+            'role' => ['required', 'string'],
 
-        User::find($id)->update($attributes);
+        ]);
+        User::find($id)->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'phone_number' => $request->phone_number,
+            'role' => $request->role,
+        ]);
 
         return redirect()->route('users.index')->with('success', 'User updated successfully');
 

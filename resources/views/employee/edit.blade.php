@@ -1,13 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-    <x-page-header header="Create New Employee Account" />
+    <x-page-header header="Edit Employee Account" />
 
     <div class="container">
         <div class="row">
             <div class="col-12 text-center pt-2">
-                <form action="{{route('users.store')}}" method="POST" class="border p-3 mt-2 col-6">
+                <form action="{{route('users.update',$user->id)}}" method="POST" class="border p-3 mt-2 col-6">
                     @csrf
+                    @method('PUT')
                     <div class="control-group text-left">
                         <label for="name">Name</label>
                         <input type="text" class="form-control" id="name"
@@ -66,7 +67,7 @@
                     </div>
 
                     <div class="d-flex justify-content-center mt-2">
-                        <button type="submit" class="btn btn-primary">Create</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
                     </div>
                 </form>
             </div>

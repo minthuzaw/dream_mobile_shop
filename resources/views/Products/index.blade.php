@@ -13,15 +13,15 @@
             <div class="col-12 text-center">
                 <table class="table mt-3  text-left table-hover">
                     <thead>
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Model</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Stock</th>
-                            <th scope="col">Price (USD)</th>
-                            <th scope="col">Action</th>
-                            <th scope="col">Time</th>
-                        </tr>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Model</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Stock</th>
+                        <th scope="col">Price (USD)</th>
+                        <th scope="col">Action</th>
+                        <th scope="col">Time</th>
+                    </tr>
                     </thead>
                     <tbody>
                     @forelse($phones as $phone)
@@ -32,25 +32,20 @@
                             <td>{!! $phone->stock !!}</td>
                             <td>${!! $phone->unit_price !!}</td>
                             <td style="display: flex">
-                                @if(Auth::user()->isAdmin() or Auth::user()->isStocker())
                                 <a href="{{route('phones.edit',$phone->id)}}"class="btn btn-outline-primary" >Edit</a>
-
                                 <form action="{{route('phones.destroy',$phone->id)}}" method="POST">
                                     @method('DELETE')
                                     @csrf
                                     <button type="submit" class="btn btn-outline-danger ml-1">Delete</button>
                                 </form>
-                                @else
-                                <a href=""class="btn btn-outline-primary" >Order</a>
-                                @endif
                             </td>
                             <td>{{ $phone->created_at?->diffForhumans() }}</td>
                         </tr>
-                        @empty
+                    @empty
                         <tr>
                             <td colspan="3">No products found</td>
                         </tr>
-                        @endforelse
+                    @endforelse
                     </tbody>
                 </table>
             </div>
@@ -59,30 +54,38 @@
 
 @endsection
 @section('script')
-	<script>
+    <script>
 
-		@if (session('success'))
-		Swal.fire({
+        @if (session('success'))
+        Swal.fire({
             icon: 'success',
             title: 'Good Job',
             text: "{{session('success')}}",
-            })
-		@endif
+        })
+        @endif
 
         @if (session('deleted'))
-		Swal.fire({
+        Swal.fire({
             icon: 'success',
             title: 'Deleted',
             text: "{{session('deleted')}}",
-            })
-		@endif
+        })
+        @endif
 
         @if (session('updated'))
-		Swal.fire({
+        Swal.fire({
             icon: 'success',
             title: 'Updated',
             text: "{{session('updated')}}",
-            })
-		@endif
-	</script>
+        })
+        @endif
+
+        @if (session('error'))
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: "{{session('error')}}",
+        })
+        @endif
+    </script>
 @endsection

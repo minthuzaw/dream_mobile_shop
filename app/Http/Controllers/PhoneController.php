@@ -13,10 +13,10 @@ class PhoneController extends Controller
 {
     // phones.index
     public function index(){
-        
+
         $phones = Phone::latest()->filter(request(['search', 'brand']))->get();
         $brands = Brand::all();
-        return view('demo', compact('phones', 'brands'));
+        return view('products.index', compact('phones', 'brands'));
     }
 
     // phones.create
@@ -26,6 +26,7 @@ class PhoneController extends Controller
     }
 
     // phone store
+
     public function store(PhoneCreateRequest $request){
         $attributes = $request->validated();
 

@@ -14,7 +14,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="{{ Auth::user()->isAdmin() ? route('users.index') : route('phones.index') }}">
+        <a class="nav-link" href="{{ Auth::user()->isCashier() ? route('phones.view') : route('phones.index') }}">
 
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Home</span></a>
@@ -38,9 +38,10 @@
         <div id="collapseBrands" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 @if(Auth::user()->isCashier())
-                <a class="collapse-item" href="{{route('brands.index')}}">View Brands</a>
+                <a class="collapse-item" href="{{route('brands.view')}}">View Brands</a>
                 @else
-                <a class="collapse-item" href="{{route('brands.create')}}">Add New Brands</a>
+                    <a class="collapse-item" href="{{route('brands.index')}}">View Brands</a>
+                    <a class="collapse-item" href="{{route('brands.create')}}">Add New Brands</a>
                 @endif
             </div>
         </div>
@@ -54,9 +55,10 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Products:</h6>
                 @if(Auth::user()->isCashier())
-                <a class="collapse-item" href="{{ route('phones.index') }}">View Products</a>
+                <a class="collapse-item" href="{{ route('phones.view') }}">View Products</a>
                 @else
-                <a class="collapse-item" href="{{route('phones.create')}}">Add New Products</a>
+                    <a class="collapse-item" href="{{ route('phones.index') }}">View Products</a>
+                    <a class="collapse-item" href="{{route('phones.create')}}">Add New Products</a>
                 @endif
 
             </div>
@@ -67,7 +69,6 @@
     <hr class="sidebar-divider">
 
     @if(Auth::user()->isAdmin())
-
         <x-admin-sidebar/>
     @endif
 

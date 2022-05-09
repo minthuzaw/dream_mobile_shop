@@ -21,8 +21,12 @@ class CheckRole
         $roles = collect([$role1, $role2]);
         if ($roles->contains(Auth::user()->role)) {
             return $next($request);
-        }
 
-        return redirect(route('phones.index'));
+        }
+        return back()->with('error', 'You are not authorized to view this page');
+
+
+
+
     }
 }

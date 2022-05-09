@@ -36,7 +36,7 @@ class AuthenticatedSessionController extends Controller
         }elseif (Auth::user()->role == 'stocker'){
             return redirect()->route('phones.index');
         }else{
-            return redirect()->route('orders.index');
+            return redirect()->route('phones.view');
         }
     }
 
@@ -54,6 +54,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect(route('login'));
+        return redirect()->route('login');
     }
 }
