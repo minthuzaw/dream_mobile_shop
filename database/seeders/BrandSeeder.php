@@ -19,9 +19,11 @@ class BrandSeeder extends Seeder
         $brands =[
             [
                 'name' => 'samsung',
+                'image' => 'https://picsum.photos/200/300',
             ],
             [
                 'name' => 'apple',
+                'image' => 'https://picsum.photos/200/300',
             ],
 
         ];

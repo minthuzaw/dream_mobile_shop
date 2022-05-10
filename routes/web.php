@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CashierController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PhoneController;
 use App\Http\Controllers\UserController;
@@ -20,23 +21,23 @@ Route::middleware('auth')->group(function () {
 
         // for brand's datatable serverside development
         Route::get('phones/datatable/ssd', [PhoneController::class, 'ssd']);
-      
-        Route::resource('categories',\App\Http\Controllers\CategoryController::class);
+
+        Route::resource('categories',CategoryController::class);
     });
 
     Route::middleware('role:admin')->group(function () {
-        Route::post('register', 'Auth\RegisterController@register');;
         Route::resource('users', UserController::class)->except('show');
     });
 
     Route::middleware('role:cashier')->group(function (){
-        Route::get('cashier/phones/view',[CashierController::class,'index'])->name('phones.view');
-        Route::get('cashier/brands/view',[BrandController::class,'index'])->name('brands.view');
-        Route::get('cashier/categories/view',[\App\Http\Controllers\CategoryController::class,'index'])->name('categories.view');
+        Route::get('/',[PhoneController::class,'index'])->name('phones.view');
+        Route::get('cashier/brands',[BrandController::class,'index'])->name('brands.view');
+        Route::get('cashier/categories',[CategoryController::class,'index'])->name('categories.view');
     });
-    
+
     Route::middleware('role:cashier,admin')->group(function (){
         Route::resource('order',OrderController::class);
     });
 });
+
 require __DIR__ . '/auth.php';

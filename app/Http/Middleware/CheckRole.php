@@ -23,10 +23,6 @@ class CheckRole
             return $next($request);
 
         }
-        return back()->with('error', 'You are not authorized to view this page');
-
-
-
-
+        return back();
     }
 }
