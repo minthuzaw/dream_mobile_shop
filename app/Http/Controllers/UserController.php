@@ -58,7 +58,7 @@ class UserController extends Controller
         ]);
 
         event(new Registered($user));
-        return redirect()->route('users.index')->with('created', 'User Created Successfully');
+        return redirect()->route('users.index')->with('success', 'User Created Successfully');
     }
 
     /**
@@ -109,7 +109,7 @@ class UserController extends Controller
             'role' => $request->role,
         ]);
 
-        return redirect()->route('users.index')->with('success', 'User updated successfully');
+        return redirect()->route('users.index')->with('updated', 'User updated successfully');
 
     }
     /**
@@ -126,7 +126,7 @@ class UserController extends Controller
             return redirect()->route('users.index')->with('error', 'You cannot delete admin');
         }else{
             $user->delete();
-            return back()->with('success', 'Employee account deleted successfully');
+            return back()->with('deleted', 'Employee account deleted successfully');
         }
 
     }

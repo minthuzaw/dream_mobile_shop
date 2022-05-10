@@ -1,4 +1,4 @@
-<x-main>
+<x-main> 
     <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -74,8 +74,45 @@
     <script src="{{asset('js/vendor/sb-admin-2.min.js')}}"></script>
     <script src="{{asset('js/vendor/demo/chart-area-demo.js')}}"></script>
     <script src="{{asset('js/vendor/demo/chart-pie-demo.js')}}"></script>
+
+    {{-- sweet alert2 --}}
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="sweetalert2.min.js"></script>
+
+    {{-- sweet alert1 --}}
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    {{-- datatable script  --}}
+    <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+    
+    {{-- mark.js --}}
+    <script src="https://cdn.jsdelivr.net/g/mark.js(jquery.mark.min.js)"></script>
+    <script src="https://cdn.jsdelivr.net/g/mark.js(jquery.mark.min.js),datatables.mark.js"></script>
+    <script src="https://cdn.datatables.net/plug-ins/1.10.13/features/mark.js/datatables.mark.js"></script>
+    
+    {{-- reponsive  --}}
+    <script src="https://cdn.datatables.net/rowreorder/1.2.8/js/dataTables.rowReorder.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+    
+    <script>
+        $(function($){
+            let token = document.head.querySelector('meta[name="csrf-token"]');
+
+            if (token){
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN' : token.content
+                    }
+                });
+            }else{
+                console.log('error');
+            }
+        })
+    </script>
+
     @yield('script')
     </body>
 </x-main>
