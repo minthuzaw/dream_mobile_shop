@@ -30,7 +30,7 @@
     @section('scripts')
     <script>
         $(document).ready(function(){
-                var table = $('.Datatable').DataTable({
+            var table = $('.Datatable').DataTable({
                     processing: true,
                     serverSide: true,
                     responsive: true,
@@ -104,7 +104,7 @@
                     });
             })
 
-            })
+        })
     </script>
     @endsection
 
