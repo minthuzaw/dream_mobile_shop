@@ -2,6 +2,7 @@
 
 @section('content')
     <x-page-header header=""/>
+    <div class="container">
         <div class="card">
             <div class="card-body">
                 <table class="table table-bordered Datatable " style="width:100%;">
@@ -15,10 +16,27 @@
                 </table>
             </div>
         </div>
+    </div>
 @endsection
 
 @section('script')
 <script>
+        @if (session('success'))
+        Swal.fire({
+            icon: 'success',
+            title: 'Good Job',
+            text: "{{session('success')}}",
+        })
+        @endif
+
+        @if (session('updated'))
+        Swal.fire({
+            icon: 'success',
+            title: 'Updated',
+            text: "{{session('updated')}}",
+        })
+        @endif
+
     $(document).ready(function(){
         var table = $('.Datatable').DataTable({
             mark: true,
@@ -58,6 +76,7 @@
 
         $(document).on('click', '.delete-btn', function(event){
                 event.preventDefault();
+                
                 var id = $(this).data('id');
                 
                 swal({
@@ -78,7 +97,9 @@
                     }
                     });
                 })
-    })
+    
+    
+            })
     </script>
 @endsection
 

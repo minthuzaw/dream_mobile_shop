@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BrandCreateRequest;
+use App\Http\Requests\BrandUpdateRequest;
 use App\Models\Brand;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -44,18 +46,14 @@ class BrandController extends Controller
         return view('brands.create');
     }
     //store
-    public function store(){
-        $data = request()->validate([
-                'name' => 'required',
-                'image' => ['required', 'image']
-        ]);
-        $imgPath = request('image')->store('images', 'public');
-        Brand::create([
-            'name'=>$data['name'],
-            'image'=>$imgPath,
-        ]);
+    public function store(BrandCreateRequest $request){
 
-        return redirect()->route('brands.index');
+        $attributes = $request->validated();
+        $attributes['image'] = $request->file('image')->store('images', 'public');
+
+        Brand::create($attributes);
+
+        return redirect()->route('brands.index')->with('success', 'Brand Created Successfully');
     }
 
 
@@ -65,23 +63,24 @@ class BrandController extends Controller
         return view('brands.edit', compact('brand'));
     }
     //update
-    public function update(Brand $brand, Request $request){
-        $data = request()->validate([
-                'name' => 'required',
-                'image' => ['required', 'image']
-        ]);
+    public function update(Brand $brand, BrandUpdateRequest $request){
+
+        $attributes = $request->validated();
 
         if (request()->hasFile('image')){
+
             Storage::delete('storage/'.$brand->image);
-            $data['image'] = request()->file('image')->store('images', 'public');
+            $attributes['image'] = $request->file('image')->store('images', 'public');
+
         }
 
-        $brand->update($data);
-        return redirect()->route('brands.index');
+        $brand->update($attributes);
+        return redirect()->route('brands.index')->with('updated', 'Brand Updated Successfully');
     }
     //delete
 
     public function destroy(Brand $brand){
+        Storage::delete($brand->image);
         $brand->delete();
 
         return 'success';

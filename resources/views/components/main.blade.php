@@ -20,6 +20,7 @@
 
     <!-- Custom styles for this template-->
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    
     <link href="{{asset('css/vendor/sb-admin-2.min.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="sweetalert2.min.css">

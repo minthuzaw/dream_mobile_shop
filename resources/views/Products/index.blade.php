@@ -9,50 +9,28 @@
     <x-page-header header="Product"/>
 
     <div class="container">
-        <div class="row">
-            <div class="col-12 text-center">
-                <table class="table mt-3  text-left table-hover">
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-bordered table-hover" id="PhoneDatatable" style="width: 100%">
                     <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Model</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Stock</th>
-                        <th scope="col">Price (USD)</th>
-                        <th scope="col">Action</th>
-                        <th scope="col">Time</th>
-                    </tr>
+                        <th class="text-center">ID</th>
+                        <th class="text-center">Brand</th>
+                        <th class="text-center">Model</th>
+                        <th class="text-center">Name</th>
+                        <th class="text-center">Stock</th>
+                        <th class="text-center">Price (USD)</th>
+                        <th class="text-center">Photo</th>
+                        <th class="text-center no-order">Actions</th>
+                        <th class="text-center">Updated At</th>
                     </thead>
                     <tbody>
-                    @forelse($phones as $phone)
-                        <tr>
-                            <td>{!! $loop->iteration !!}</td>
-                            <td>{!! $phone->model !!}</td>
-                            <td>{!! $phone->name !!}</td>
-                            <td>{!! $phone->stock !!}</td>
-                            <td>${!! $phone->unit_price !!}</td>
-                            <td style="display: flex">
-                                <a href="{{route('phones.edit',$phone->id)}}"class="btn btn-outline-primary" >Edit</a>
-                                <form action="{{route('phones.destroy',$phone->id)}}" method="POST">
-                                    @method('DELETE')
-                                    @csrf
-                                    <button type="submit" class="btn btn-outline-danger ml-1">Delete</button>
-                                </form>
-                            </td>
-                            <td>{{ $phone->created_at?->diffForhumans() }}</td>
-                        </tr>
-                    @empty
-                        <tr>
-                            <td colspan="3">No products found</td>
-                        </tr>
-                    @endforelse
-                    </tbody>
                 </table>
             </div>
         </div>
     </div>
 
 @endsection
+
 @section('script')
     <script>
 
@@ -87,5 +65,62 @@
             text: "{{session('error')}}",
         })
         @endif
+
+        $(function() {
+            var table = $('#PhoneDatatable').DataTable({
+                responsive: true,
+                mark: true,
+                processing: true,
+                serverSide: true,
+                ajax: '/phones/datatable/ssd', //route
+                columns: [
+                    { data: 'id', name: 'id', class: 'text-center' },
+                    { data: 'brand_name', name: 'brand_name', class: 'text-center' },
+                    { data: 'model', name: 'model', class: 'text-center'},
+                    { data: 'name', name: 'name', class: 'text-center' },
+                    { data: 'stock', name: 'stock', class: 'text-center' },
+                    { data: 'unit_price', name: 'unit_price', class: 'text-center' },
+                    { data: 'image', name: 'image', class: 'text-center' },
+                    { data: 'action', name: 'action', class: 'text-center' },
+                    { data: 'updated_at', name: 'updated_at', class: 'text-center' }
+                ],
+                "columnDefs": [
+                    {
+                        "targets": [ 8 ],
+                        "visible": false,
+                        "searchable": false
+                    },
+                    {
+                        'targets': 'no-order',
+                        'orderable': false
+                    },
+                ],
+                "order": [[ 8, "desc" ]]
+            });
+
+            $(document).on('click', '.delete-btn', function(event){
+                event.preventDefault();
+                
+                var id = $(this).data('id');
+                
+                swal({
+                    title: "Are you sure?",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                    if (willDelete) {
+                        $.ajax({
+                            method: "DELETE",
+                            url: `/phones/${id}`,
+                            })
+                            .done(function( response ) {
+                                table.ajax.reload();
+                        });
+                    }
+                    });
+                })
+        });
     </script>
 @endsection

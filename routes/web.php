@@ -17,6 +17,9 @@ Route::middleware('auth')->group(function () {
 
         // for brand's datatable serverside development
         Route::get('brands/datatable/ssd', [BrandController::class, 'ssd']);
+
+        // for brand's datatable serverside development
+        Route::get('phones/datatable/ssd', [PhoneController::class, 'ssd']);
     });
 
     Route::middleware('role:admin')->group(function () {
