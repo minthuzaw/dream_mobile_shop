@@ -33,7 +33,8 @@
         {{--For Brands--}}
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBrands"
            aria-expanded="true" aria-controls="collapseBrands">
-            <i class="fas fa-fw fa-cog"></i>
+            {{--<i class="fas fa-fw fa-cog"></i>--}}
+            <i class="fas fa-mobile"></i>
             <span>Brands</span>
         </a>
         <div id="collapseBrands" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -49,7 +50,8 @@
         {{--For Products--}}
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
            aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-fw fa-cog"></i>
+            {{--<i class="fas fa-fw fa-cog"></i>--}}
+            <i class="fab fa-product-hunt"></i>
             <span>Products</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -65,7 +67,8 @@
         {{--For Categories--}}
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
            aria-expanded="true" aria-controls="collapseUtilities">
-            <i class="fas fa-fw fa-wrench"></i>
+            {{--<i class="fas fa-fw fa-wrench"></i>--}}
+            <i class="fas fa-list"></i>
             <span>Categories</span>
         </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
