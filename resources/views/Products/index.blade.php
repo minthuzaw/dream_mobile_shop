@@ -95,7 +95,14 @@
                         'orderable': false
                     },
                 ],
-                "order": [[ 8, "desc" ]]
+                "order": [[ 8, "desc" ]],
+                "language": {
+                    "paginate": {
+                    "previous": "<i class='fas fa-angle-left'></i>",
+                    "next": "<i class='fas fa-angle-right'></i>"
+                    },
+                    "processing": "Loading ..."
+                }
             });
 
             $(document).on('click', '.delete-btn', function(event){
