@@ -70,7 +70,7 @@
             var table = $('#PhoneDatatable').DataTable({
                 responsive: true,
                 mark: true,
-                processing: true,
+                processing: false,
                 serverSide: true,
                 ajax: '/phones/datatable/ssd', //route
                 columns: [
@@ -107,9 +107,9 @@
 
             $(document).on('click', '.delete-btn', function(event){
                 event.preventDefault();
-                
+
                 var id = $(this).data('id');
-                
+
                 swal({
                     title: "Are you sure?",
                     icon: "warning",

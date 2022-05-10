@@ -24,7 +24,7 @@ class PhoneController extends Controller
 
     public function ssd(){
         $phones = Phone::with('brand');
-        
+
         return DataTables::of($phones)
         ->filterColumn('brand_name', function($query, $search){
             $query->whereHas('brand', function($query) use($search) {
