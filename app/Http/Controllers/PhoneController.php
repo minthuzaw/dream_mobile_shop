@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PhoneCreateRequest;
 use App\Http\Requests\PhoneUpdateRequest;
 use App\Models\Brand;
+use App\Models\Category;
 use App\Models\Phone;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -68,6 +69,7 @@ class PhoneController extends Controller
     // edit
     public function edit(Phone $phone){
         $brands = Brand::get()->pluck('name','id');
+//        $categories = Category::get()->pluck('name','id');
         return view('products.edit', compact('phone', 'brands'));
     }
 
