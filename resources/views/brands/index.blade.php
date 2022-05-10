@@ -24,6 +24,7 @@
             mark: true,
             processing: true,
             serverSide: true,
+            responsive: true,
             ajax: 'brands/datatable/ssd',
             columns: [
                 { data: 'image', name: 'image',class:"text-center"},
