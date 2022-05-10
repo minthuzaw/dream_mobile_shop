@@ -72,7 +72,7 @@
                 mark: true,
                 processing: true,
                 serverSide: true,
-                ajax: '/phones/datatable/ssd', //route
+                ajax: "{{route('phones.index')}}", //route
                 columns: [
                     { data: 'id', name: 'id', class: 'text-center' },
                     { data: 'brand_name', name: 'brand_name', class: 'text-center' },

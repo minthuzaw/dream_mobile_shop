@@ -14,12 +14,6 @@ Route::middleware('auth')->group(function () {
     Route::middleware('role:stocker,admin')->group(function () {
         Route::resource('phones', PhoneController::class);
         Route::resource('brands', BrandController::class);
-
-        // for brand's datatable serverside development
-        Route::get('brands/datatable/ssd', [BrandController::class, 'ssd']);
-
-        // for brand's datatable serverside development
-        Route::get('phones/datatable/ssd', [PhoneController::class, 'ssd']);
       
         Route::resource('categories',\App\Http\Controllers\CategoryController::class);
     });
