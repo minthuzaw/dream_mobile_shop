@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CashierController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PhoneController;
 use App\Http\Controllers\UserController;
@@ -14,8 +15,7 @@ Route::middleware('auth')->group(function () {
     Route::middleware('role:stocker,admin')->group(function () {
         Route::resource('phones', PhoneController::class);
         Route::resource('brands', BrandController::class);
-      
-        Route::resource('categories',\App\Http\Controllers\CategoryController::class);
+        Route::resource('categories',CategoryController::class);
     });
 
     Route::middleware('role:admin')->group(function () {
@@ -26,7 +26,7 @@ Route::middleware('auth')->group(function () {
     Route::middleware('role:cashier')->group(function (){
         Route::get('cashier/phones/view',[CashierController::class,'index'])->name('phones.view');
         Route::get('cashier/brands/view',[BrandController::class,'index'])->name('brands.view');
-        Route::get('cashier/categories/view',[\App\Http\Controllers\CategoryController::class,'index'])->name('categories.view');
+        Route::get('cashier/categories/view',[CategoryController::class,'index'])->name('categories.view');
     });
     
     Route::middleware('role:cashier,admin')->group(function (){

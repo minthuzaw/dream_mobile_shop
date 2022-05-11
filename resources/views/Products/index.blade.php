@@ -4,9 +4,9 @@
 @section('content')
 
     {{-- brand filter component  --}}
-    <x-brandsFilter :brands="$brands"></x-brandsFilter>
+    {{-- <x-brandsFilter :brands="$brands"></x-brandsFilter> --}}
 
-    <x-page-header header="Product"/>
+    <x-page-header header=""/>
 
     <div class="container">
         <div class="card">
