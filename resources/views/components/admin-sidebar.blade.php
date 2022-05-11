@@ -23,7 +23,7 @@
 
 <!-- Nav Item - Charts -->
 <li class="nav-item">
-    <a class="nav-link" href="{{route('charts.index')}}">
+    <a class="nav-link" href="">
         <i class="fas fa-fw fa-chart-area"></i>
         <span>Charts</span></a>
 </li>
