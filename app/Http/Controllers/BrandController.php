@@ -13,32 +13,31 @@ use Yajra\Datatables\Datatables;
 
 class BrandController extends Controller
 {
-    public function index(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
+    public function index(Request $request)
     {
-        $brands = Brand::all();
+        if($request->ajax()){
+            $brands = Brand::query(); //fetching brands
 
-        return view('brands.index', compact('brands'));
-    }
-
-    public function ssd(){
-        $brands = Brand::query(); //fetching brands
-
-        return Datatables::of($brands)
-               ->editColumn('updated_at', function($brand){
-                   return Carbon::parse($brand->updated_at)->format('Y-m-d H:i:s');
-               })
-               ->editColumn('image', function($brand){
-                   return '<img src="storage/'. $brand->image .'" alt="" class="brand-thumbnail">';
-               })
-               ->addColumn('action', function($brand){
-                   $edit_icon = '<a href="'.route('brands.edit', $brand->id).'" class="text-warning p-2" style="font-size: 20px"><i class="far fa-edit"></i></a>';
-                   $delete_icon = '<a href="#" class="text-danger delete-btn" data-id="'.$brand->id.'" style="font-size: 20px"><i class="fas fa-trash-alt"></i></a>';
-                   
-
-                   return '<div class="action-icon">' . $edit_icon . $delete_icon .'</div>';    
+            return Datatables::of($brands)
+                ->editColumn('updated_at', function($brand){
+                    return Carbon::parse($brand->updated_at)->format('Y-m-d H:i:s');
                 })
-               ->rawColumns(['image','action'])
-               ->make(true);
+                ->editColumn('image', function($brand){
+                    return '<img src="storage/'. $brand->image .'" alt="" class="brand-thumbnail">';
+                })
+                ->addColumn('action', function($brand){
+                    $edit_icon = '<a href="'.route('brands.edit', $brand->id).'" class="text-warning p-2" style="font-size: 20px"><i class="far fa-edit"></i></a>';
+                    $delete_icon = '<a href="#" class="text-danger delete-btn" data-id="'.$brand->id.'" style="font-size: 20px"><i class="fas fa-trash-alt"></i></a>';
+                    
+
+                    return '<div class="action-icon">' . $edit_icon . $delete_icon .'</div>';    
+                    })
+                ->rawColumns(['image','action'])
+                ->make(true);
+        }
+
+        $brands = Brand::all();
+        return view('brands.index', compact('brands'));
     }
 
     //create

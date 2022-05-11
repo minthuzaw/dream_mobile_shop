@@ -43,7 +43,7 @@
             processing: true,
             serverSide: true,
             responsive: true,
-            ajax: 'brands/datatable/ssd',
+            ajax: "{{route('brands.index')}}",
             columns: [
                 { data: 'image', name: 'image',class:"text-center"},
                 { data: 'name', name: 'name', class:"text-center"},
@@ -76,7 +76,6 @@
 
         $(document).on('click', '.delete-btn', function(event){
                 event.preventDefault();
-                
                 var id = $(this).data('id');
                 
                 swal({
