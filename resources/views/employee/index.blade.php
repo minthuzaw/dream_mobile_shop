@@ -3,40 +3,18 @@
 @section('content')
     <x-page-header header="Employee List"/>
     <div class="container">
-        <div class="row">
-            <div class="col-12 text-center">
-                <table class="table mt-3  text-left table-hover">
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-bordered Datatable" style="width:100%">
                     <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Phone Number</th>
-                        <th scope="col">Role</th>
-                        <th scope="col">Action</th>
-                        <th scope="col">Time</th>
-                    </tr>
+                        <th class="text-center">ID</th>
+                        <th class="text-center">Name</th>
+                        <th class="text-center">Email</th>
+                        <th class="text-center">Phone Number</th>
+                        <th class="text-center">Role</th>
+                        <th class="text-center">Action</th>
+                        <th class="text-center">Updated At</th>
                     </thead>
-                    <tbody>
-                    @foreach($users as $user)
-                        <tr>
-                            <td>{!! $loop->iteration !!}</td>
-                            <td>{!! $user->name !!}</td>
-                            <td>{!! $user->email !!}</td>
-                            <td>{!! $user->phone_number !!}</td>
-                            <td>{!! $user->role !!}</td>
-                            <td style="display: flex">
-                                <a href="{{route('users.edit',$user->id)}}" class="btn btn-outline-primary" >Edit</a>
-                                <form action="{{route('users.destroy',$user->id)}}" method="POST">
-                                    @method('DELETE')
-                                    @csrf
-                                    <button type="submit" class="btn btn-outline-danger ml-1">Delete</button>
-                                </form>
-                            </td>
-                            <td>{{ $user->created_at?->diffForhumans() }}</td>
-                        </tr>
-                    @endforeach
-                    </tbody>
                 </table>
             </div>
         </div>
@@ -47,35 +25,95 @@
     <script>
 
         @if (session('success'))
-        Swal.fire({
-            icon: 'success',
-            title: 'Good Job',
-            text: "{{session('success')}}",
-        })
-        @endif
-
-        @if (session('deleted'))
-        Swal.fire({
-            icon: 'success',
-            title: 'Deleted',
-            text: "{{session('deleted')}}",
-        })
+            Swal.fire({
+                icon: 'success',
+                title: 'Good Job',
+                text: "{{session('success')}}",
+            })
         @endif
 
         @if (session('updated'))
-        Swal.fire({
-            icon: 'success',
-            title: 'Updated',
-            text: "{{session('updated')}}",
-        })
+            Swal.fire({
+                icon: 'success',
+                title: 'Updated',
+                text: "{{session('updated')}}",
+            })
         @endif
 
         @if (session('error'))
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: "{{session('error')}}",
-        })
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: "{{session('error')}}",
+            })
         @endif
+
+        $(document).ready(function(){
+            var table = $('.Datatable').DataTable({
+                mark: true,
+                processing: true,
+                serverSide: true,
+                responsive: true,
+                ajax: "{{route('users.index')}}",
+                columns: [
+                    { data: 'id', name: 'id',class:"text-center"},
+                    { data: 'name', name: 'name', class:"text-center"},
+                    { data: 'email', name: 'email', class:"text-center"},
+                    { data: 'phone_number', name: 'phone_number', class:"text-center"},
+                    { data: 'role', name: 'role', class:"text-center"},
+                    { data: 'action', name: 'action', class:"text-center"},
+                    { data: 'updated_at', name: 'updated_at', class:"text-center"}
+                ],
+                "order": [[6, 'desc']],
+                "columnDefs": [
+                    {
+                        "targets": 6,
+                        "visible": false
+                    },
+                    {
+                        'targets': 'no-order',
+                        'orderable': false
+                    },
+                    {
+                        "targets": 'no-search',
+                        'searchable': false
+                    }, 
+                ],
+                "language": {
+                        "paginate": {
+                        "previous": "<i class='fas fa-angle-left'></i>",
+                        "next": "<i class='fas fa-angle-right'></i>"
+                        },
+                        "processing": "Loading ..."
+                    }
+            });
+
+    
+            $(document).on('click', '.delete-btn', function(e){
+                e.preventDefault();
+
+                var id = $(this).data('id');
+                
+                swal({
+                    title: "Are you sure?",
+                    text: "Once deleted, you will not be able to recover this imaginary file!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                    if (willDelete) {
+                        //success
+                        $.ajax({
+                            method: "DELETE",
+                            url: `users/${id}`,
+                            })
+                            .done(function( msg ) {
+                                table.ajax.reload();
+                            });
+                    }
+                    });
+            })
+        })
     </script>
 @endsection
