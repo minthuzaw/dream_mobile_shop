@@ -19,18 +19,18 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::middleware('role:admin')->group(function () {
-        Route::post('register', 'Auth\RegisterController@register');;
         Route::resource('users', UserController::class)->except('show');
     });
 
     Route::middleware('role:cashier')->group(function (){
-        Route::get('cashier/phones/view',[CashierController::class,'index'])->name('phones.view');
-        Route::get('cashier/brands/view',[BrandController::class,'index'])->name('brands.view');
-        Route::get('cashier/categories/view',[CategoryController::class,'index'])->name('categories.view');
+        Route::get('/',[PhoneController::class,'index'])->name('phones.view');
+        Route::get('cashier/brands',[BrandController::class,'index'])->name('brands.view');
+        Route::get('cashier/categories',[CategoryController::class,'index'])->name('categories.view');
     });
-    
+
     Route::middleware('role:cashier,admin')->group(function (){
         Route::resource('order',OrderController::class);
     });
 });
+
 require __DIR__ . '/auth.php';

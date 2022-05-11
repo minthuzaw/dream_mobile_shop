@@ -23,13 +23,19 @@
 @endsection
 @section('script')
     <script>
-
         @if (session('success'))
             Swal.fire({
                 icon: 'success',
                 title: 'Good Job',
                 text: "{{session('success')}}",
             })
+        @if (session('created'))
+        Swal.fire({
+            icon: 'success',
+            title: 'Good Job',
+            text: "{{session('created')}}",
+        })
+        @endif
         @endif
 
         @if (session('updated'))

@@ -49,10 +49,6 @@ class PhoneController extends Controller
         return view('products.index', compact('phones', 'brands'));
     }
 
-    public function ssd(){
-
-    }
-
     // phones.create
     public function create(){
         $brands = Brand::get()->pluck('name','id');
