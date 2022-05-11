@@ -38,7 +38,7 @@
             <div class="d-flex justify-content-center">
                 <div class="col-md-8">
                     <div class="d-flex sm-justify-content-between justify-content-between">
-                        @if (request()->is('/'))
+                        @if (request()->is('dashboard'))
                         <a id="show-sidebar" href="#">
                             <i class="fas fa-bars"></i>
                         </a>
@@ -62,7 +62,7 @@
             </div>
         </main>
 
-        <div class="bottom-bar">
+        <div class="bottom-bar bg-white">
             <div class="d-flex justify-content-center">
                 <div class="col-md-8">
                     <div class="d-flex justify-content-between">
@@ -78,9 +78,9 @@
                             <i class="fas fa-home"></i>
                             <p class="mb-0">Home</p>
                         </a>
-                        <a href="">
-                            <i class="fas fa-home"></i>
-                            <p class="mb-0">Home</p>
+                        <a href="{{route('profile.profile')}}">
+                            <i class="fas fa-user-alt"></i>
+                            <p class="mb-0">Profile</p>
                         </a>
                     </div>
                 </div>

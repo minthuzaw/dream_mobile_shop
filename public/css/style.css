@@ -555,3 +555,8 @@ div.dataTables_wrapper div.dataTables_length, div.dataTables_wrapper div.dataTab
   }
 
   mark{background:orange;color:black;}
+
+  img, svg, video, canvas, audio, iframe, embed, object {
+    display: inline !important;
+    vertical-align: middle;
+}
