@@ -19,7 +19,7 @@ class PhoneController extends Controller
 
         if($request->ajax()){
             $phones = Phone::with('brand');
-        
+
             return DataTables::of($phones)
             ->filterColumn('brand_name', function($query, $search){
                 $query->whereHas('brand', function($query) use($search) {
@@ -27,26 +27,35 @@ class PhoneController extends Controller
                 });
             })
             ->addColumn('action', function($phone){
-                $edit_icon = '<a href="'. route('phones.edit', $phone->id) .'" class="text-warning p-2" style="font-size: 20px"><i class="far fa-edit"></i></a>';
-                $delete_icon = '<a href="#" class="text-danger delete-btn" data-id="'.$phone->id.'" style="font-size: 20px"><i class="fas fa-trash-alt"></i></a>';
-                return '<div class="action-icon">'. $edit_icon . $delete_icon .'</div>';
+                $edit_icon = '<a href="'. route('phones.edit', $phone->id) .'" class="text-warning" style="font-size: 20px"><i class="far fa-edit"></i></a>';
+                $delete_icon = '<a href="#" class="text-danger delete-btn pl-2" data-id="'.$phone->id.'" style="font-size: 20px"><i class="fas fa-trash-alt"></i></a>';
+                $order_icon = '<a href="#" class="text-info pl-2" data-id="'.$phone->id.'" style="font-size: 20px"><i class="fas fa-shopping-basket"></i></a>';
+                $show_icon = '<a href="'. route('phones.show', $phone->id) .'" class="text-info pl-2" data-id="'.$phone->id.'" style="font-size: 20px"><i class="fas fa-info-circle"></i></a>';
+
+                if (auth()->user()->isCashier()) {
+                    return '<div class="action-icon">' . $order_icon . $show_icon .'</div>';
+                }
+                return '<div class="action-icon">'. $edit_icon . $delete_icon . $show_icon .'</div>';
             })
             ->editColumn('updated_at', function($phone){
                 return Carbon::parse($phone->updated_at)->format('Y-m-d H:i:s');
             })
-            ->editColumn('image', function($phone){
-                return '<img src="storage/'. $phone->image .'" alt="" class="brand-thumbnail">';
-            })
             ->addColumn('brand_name', function ($phone) {
                 return $phone->brand ? $phone->brand->name : '-';
             })
-            ->rawColumns(['action', 'image'])
+            ->rawColumns(['action'])
             ->make(true);
         }
 
         $phones = Phone::latest()->filter(request(['search', 'brand']))->get();
         $brands = Brand::all();
         return view('products.index', compact('phones', 'brands'));
+    }
+
+    // phones.show
+    public function show(Phone $phone){
+
+        return view('products.show', compact('phone', ));
     }
 
     // phones.create

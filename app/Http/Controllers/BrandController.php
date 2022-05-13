@@ -23,14 +23,13 @@ class BrandController extends Controller
                     return Carbon::parse($brand->updated_at)->format('Y-m-d H:i:s');
                 })
                 ->editColumn('image', function($brand){
-                    return '<img src="storage/'. $brand->image .'" alt="" class="brand-thumbnail">';
+                    return '<img src="storage/'. $brand->image .'" alt="" style="width: 20%;height: 20%">';
                 })
                 ->addColumn('action', function($brand){
                     $edit_icon = '<a href="'.route('brands.edit', $brand->id).'" class="text-warning p-2" style="font-size: 20px"><i class="far fa-edit"></i></a>';
                     $delete_icon = '<a href="#" class="text-danger delete-btn" data-id="'.$brand->id.'" style="font-size: 20px"><i class="fas fa-trash-alt"></i></a>';
-                    
 
-                    return '<div class="action-icon">' . $edit_icon . $delete_icon .'</div>';    
+                    return '<div class="action-icon">' . $edit_icon . $delete_icon .'</div>';
                     })
                 ->rawColumns(['image','action'])
                 ->make(true);

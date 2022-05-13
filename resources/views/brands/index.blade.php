@@ -1,18 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
-    <x-page-header header=""/>
+    @section('header')
+     <x-page-header header="Brands List"/>
+    @endsection
     <div class="container">
         <div class="card">
             <div class="card-body">
                 <table class="table table-bordered Datatable " style="width:100%;">
                     <thead>
-                        <th class="text-center no-order"></th>
+                        <th class="text-center no-order">Logo</th>
                         <th class="text-center">Name</th>
                         <th class="text-center">Action</th>
                         <th class="text-center">Updated at</th>
                     </thead>
-    
+
                 </table>
             </div>
         </div>
@@ -36,6 +38,13 @@
             text: "{{session('updated')}}",
         })
         @endif
+        @if (session('error'))
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: "{{session('error')}}",
+        })
+        @endif
 
     $(document).ready(function(){
         var table = $('.Datatable').DataTable({
@@ -43,6 +52,8 @@
             processing: true,
             serverSide: true,
             responsive: true,
+            pageLength : 5,
+            lengthMenu: [[5, 10, 25, 50], [5, 10, 25, 50]],
             ajax: "{{route('brands.index')}}",
             columns: [
                 { data: 'image', name: 'image',class:"text-center"},
@@ -63,7 +74,7 @@
                 {
                     "targets": 'no-search',
                     'searchable': false
-                }, 
+                },
             ],
             "language": {
                     "paginate": {
@@ -77,7 +88,7 @@
         $(document).on('click', '.delete-btn', function(event){
                 event.preventDefault();
                 var id = $(this).data('id');
-                
+
                 swal({
                     title: "Are you sure?",
                     icon: "warning",
@@ -96,8 +107,8 @@
                     }
                     });
                 })
-    
-    
+
+
             })
     </script>
 @endsection

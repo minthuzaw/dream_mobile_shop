@@ -33,10 +33,8 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
         if (Auth::user()->role == 'admin'){
             return redirect()->route('users.index');
-        }elseif (Auth::user()->role == 'stocker'){
-            return redirect()->route('phones.index');
         }else{
-            return redirect()->route('phones.view');
+            return redirect()->route(RouteServiceProvider::HOME);
         }
     }
 

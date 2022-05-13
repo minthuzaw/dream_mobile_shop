@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Brand;
 use App\Models\Phone;
 use App\Models\User;
 use Database\Factories\UserFactory;
@@ -17,10 +18,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(10)->create();
-        Phone::factory(200000)->create();
+        //User::factory(10)->create();
+        Phone::factory(100)->create();
+        Brand::factory(10)->create();
         $this->call([
             AdminSeeder::class,
+            UserSeeder::class,
         ]);
     }
 }

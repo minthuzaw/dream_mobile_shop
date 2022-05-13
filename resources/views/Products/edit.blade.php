@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-    <x-page-header header="Change Products details" />
-
+@section('header')
+    <x-page-header header="Prodcuts / {{$phone->name}} / Edit"/>
+@endsection
     <div class="container">
 	<div class="row">
 		<div class="col-12 text-center pt-2">
-			<div class="text-left"><a href="{{ route('phones.index') }}" class="btn btn-outline-primary">Products List</a></div>
 			<form id="add-frm" method="POST" action="{{route('phones.update',$phone->id)}}" class="border p-3 mt-2 col-6">
                 @csrf
                 @method('PUT')
@@ -51,6 +51,13 @@
 							placeholder="Enter Phone Price" rows="" value="{!! $phone->unit_price !!}" required></input>
 					</div>
 				</div>
+
+                <div class="control-group  text-left mt-2">
+                    <label for="body">Description</label>
+                    <div>
+                        <textarea name="description" id="description" cols="58" rows="5">{!! $phone->description !!}</textarea>
+                    </div>
+                </div>
 
 				<div class="control-group text-center mt-2"><button class="btn btn-success">Update</button></div>
 			</form>
