@@ -3,10 +3,10 @@
 
 @section('content')
 
-    {{-- brand filter component  --}}
-    {{-- <x-brandsFilter :brands="$brands"></x-brandsFilter> --}}
+    @section('header')
+        <x-page-header header="Products List"/>
+    @endsection
 
-    <x-page-header header=""/>
 
     <div class="container">
         <div class="card">
@@ -19,7 +19,6 @@
                         <th class="text-center">Name</th>
                         <th class="text-center">Stock</th>
                         <th class="text-center">Price (USD)</th>
-                        <th class="text-center">Photo</th>
                         <th class="text-center no-order">Actions</th>
                         <th class="text-center">Updated At</th>
                     </thead>
@@ -72,6 +71,8 @@
                 mark: true,
                 processing: false,
                 serverSide: true,
+                pageLength : 5,
+                lengthMenu: [[5, 10, 25, 50], [5, 10, 25, 50]],
                 ajax: "{{route('phones.index')}}", //route
                 columns: [
                     { data: 'id', name: 'id', class: 'text-center' },
@@ -80,13 +81,12 @@
                     { data: 'name', name: 'name', class: 'text-center' },
                     { data: 'stock', name: 'stock', class: 'text-center' },
                     { data: 'unit_price', name: 'unit_price', class: 'text-center' },
-                    { data: 'image', name: 'image', class: 'text-center' },
                     { data: 'action', name: 'action', class: 'text-center' },
                     { data: 'updated_at', name: 'updated_at', class: 'text-center' }
                 ],
                 "columnDefs": [
                     {
-                        "targets": [ 8 ],
+                        "targets": [ 7 ],
                         "visible": false,
                         "searchable": false
                     },
@@ -95,7 +95,7 @@
                         'orderable': false
                     },
                 ],
-                "order": [[ 8, "desc" ]],
+                "order": [[ 7, "desc" ]],
                 "language": {
                     "paginate": {
                     "previous": "<i class='fas fa-angle-left'></i>",

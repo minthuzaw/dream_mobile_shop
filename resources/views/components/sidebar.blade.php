@@ -3,10 +3,10 @@
 
     <!-- Sidebar - Brand -->
     <div class="sidebar-brand d-flex align-items-center justify-content-center">
-        <div class="sidebar-brand-icon rotate-n-15">
+        <div class="sidebar-brand-icon rotate-n-15 my-auto">
             <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">DMS Admin</div>
+        <div class="sidebar-brand-text mx-3 my-auto"><h5>DMS Admin</h5></div>
     </div>
 
     <!-- Divider -->
@@ -14,10 +14,11 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="{{ Auth::user()->isCashier() ? route('phones.view') : route('phones.index') }}">
+        <a class="nav-link" href="{{route('phones.index')}}">
 
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Home</span></a>
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
     </li>
 
     <!-- Divider -->
@@ -40,7 +41,7 @@
         <div id="collapseBrands" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 @if(Auth::user()->isCashier())
-                    <a class="collapse-item" href="{{route('brands.view')}}">View Brands</a>
+                    <a class="collapse-item" href="{{route('brands.index')}}">View Brands</a>
                 @else
                     <a class="collapse-item" href="{{route('brands.index')}}">View Brands</a>
                     <a class="collapse-item" href="{{route('brands.create')}}">Add New Brands</a>
@@ -57,7 +58,7 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 @if(Auth::user()->isCashier())
-                    <a class="collapse-item" href="{{ route('phones.view') }}">View Products</a>
+                    <a class="collapse-item" href="{{ route('phones.index') }}">View Products</a>
                 @else
                     <a class="collapse-item" href="{{ route('phones.index') }}">View Products</a>
                     <a class="collapse-item" href="{{route('phones.create')}}">Add New Products</a>
@@ -74,7 +75,7 @@
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 @if(Auth::user()->isCashier())
-                    <a class="collapse-item" href="{{ route('categories.view') }}">View Categories</a>
+                    <a class="collapse-item" href="{{ route('categories.index') }}">View Categories</a>
                 @else
                     <a class="collapse-item" href="{{ route('categories.index') }}">View Categories</a>
                     <a class="collapse-item" href="{{route('categories.create')}}">Add New Categories</a>

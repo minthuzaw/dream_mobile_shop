@@ -1,62 +1,119 @@
-{{-- @dd($brands[0]->name); --}}
-@extends('layouts.app')
+<style>
+    body {
+        background: linear-gradient(253deg, #0cc898, #1797d2, #864fe1);
+        background-size: 300% 300%;
+        -webkit-animation: Background 25s ease infinite;
+        -moz-animation: Background 25s ease infinite;
+        animation: Background 25s ease infinite;
+    }
 
-@section('content')
-    {{-- brand filter component  --}}
-    <x-brandsFilter :brands="$brands"></x-brandsFilter>
+    @-webkit-keyframes Background {
+        0% {
+            background-position: 0% 50%
+        }
+        50% {
+            background-position: 100% 50%
+        }
+        100% {
+            background-position: 0% 50%
+        }
+    }
 
-    <x-page-header header="Product"/>
+    @-moz-keyframes Background {
+        0% {
+            background-position: 0% 50%
+        }
+        50% {
+            background-position: 100% 50%
+        }
+        100% {
+            background-position: 0% 50%
+        }
+    }
 
-    <div class="container">
-        <div class="row">
-            <div class="col-12 text-center">
-                <table class="table mt-3  text-left table-hover">
-                    <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Model</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Stock</th>
-                        <th scope="col">Price (USD)</th>
-                        <th scope="col">Action</th>
-                        <th scope="col">Time</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @forelse($phones as $phone)
-                        <tr>
-                            <td>{!! $loop->iteration !!}</td>
-                            <td>{!! $phone->model !!}</td>
-                            <td>{!! $phone->name !!}</td>
-                            <td>{!! $phone->stock !!}</td>
-                            <td>${!! $phone->unit_price !!}</td>
-                            <td style="display: flex">
-                                <a href=""class="btn btn-outline-primary" >Order</a>
-                            </td>
-                            <td>{{ $phone->created_at?->diffForhumans() }}</td>
-                        </tr>
-                    @empty
-                        <tr>
-                            <td colspan="3">No products found</td>
-                        </tr>
-                    @endforelse
-                    </tbody>
-                </table>
-            </div>
-        </div>
+    @keyframes Background {
+        0% {
+            background-position: 0% 50%
+        }
+        50% {
+            background-position: 100% 50%
+        }
+        100% {
+            background-position: 0% 50%
+        }
+    }
+
+    .full-screen {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: url(https://i.imgur.com/wCG2csZ.png);
+        background-size: cover;
+        background-position: center;
+        width: 100%;
+        height: 100%;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-direction: column;
+        /* works with row or column */
+
+        flex-direction: column;
+        -webkit-align-items: center;
+        align-items: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    h1 {
+        color: #fff;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 800;
+        font-size: 4em;
+        letter-spacing: -2px;
+        text-align: center;
+        text-shadow: 1px 2px 1px rgba(0, 0, 0, .6);
+    }
+
+    h3 {
+        color: #fff;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 400;
+        font-size: 2em;
+        letter-spacing: -2px;
+        text-align: center;
+        text-shadow: 1px 2px 1px rgba(0, 0, 0, .6);
+    }
+
+    .button-line {
+        font-family: 'Open Sans', sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        background: transparent;
+        border: 1px solid #fff;
+        color: #fff;
+        text-align: center;
+        font-size: 1.4em;
+        opacity: .8;
+        padding: 20px 40px;
+        text-decoration: none;
+        transition: all .5s ease;
+        margin: 0 auto;
+        display: block;
+        width: 100px;
+    }
+
+    .button-line:hover {
+        opacity: 1;
+    }
+</style>
+<div class="full-screen">
+    <div>
+        <h1>Dream Mobile Shop</h1>
+        <h3>Admin Dashboard</h3>
+        <br>
+        <a class="button-line" href="{{route('login')}}">Login</a>
     </div>
-
-@endsection
-@section('script')
-    <script>
-
-        @if (session('error'))
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: "{{session('error')}}",
-        })
-        @endif
-
-    </script>
-@endsection
+</div>

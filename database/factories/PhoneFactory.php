@@ -25,6 +25,7 @@ class PhoneFactory extends Factory
             'image' => Str::random(10),
             'unit_price' => $this->faker->randomFloat(2, 0, 100),
             'user_id' => $this->faker->randomDigit(),
+            'description' => $this->faker->text(),
         ];
     }
 }

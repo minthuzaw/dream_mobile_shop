@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <x-page-header header="Create New Employee Account" />
+@section('header')
+    <x-page-header header="Employee / Create New Employee Account"/>
+@endsection
 
     <div class="container">
         <div class="row">
@@ -65,10 +67,10 @@
                         @enderror
                     </div>
 
-                    <div class="d-flex justify-content-center mt-2">
-                        <button type="submit" class="btn btn-primary">Create</button>
-
+                    <div class="control-group  text-center mt-2">
+                        <button class="btn btn-success">Create</button>
                     </div>
+
                 </form>
             </div>
         </div>

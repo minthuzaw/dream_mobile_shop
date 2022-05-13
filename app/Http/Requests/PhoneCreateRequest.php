@@ -29,6 +29,7 @@ class PhoneCreateRequest extends FormRequest
             'stock' => 'required',
             'brand_id' => 'required',
             'unit_price' => 'required',
+            'description' => 'required',
 
         ];
     }

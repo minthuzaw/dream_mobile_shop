@@ -14,8 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('order_phone', function (Blueprint $table) {
-            $table->foreignId('order_id');
-            $table->foreignId('phone_id');
+            $table->foreignId('order_id')->constrained();
+            $table->foreignId('phone_id')->constrained();
+            $table->float('price');
+            $table->integer('quantity');
+            $table->float('total');
             $table->timestamps();
             $table->softDeletes();
         });
