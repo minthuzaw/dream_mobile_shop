@@ -19,7 +19,7 @@ class PhoneController extends Controller
 
         if($request->ajax()){
             $phones = Phone::with('brand');
-        
+
             return DataTables::of($phones)
             ->filterColumn('brand_name', function($query, $search){
                 $query->whereHas('brand', function($query) use($search) {
@@ -84,7 +84,6 @@ class PhoneController extends Controller
 
     // destroy
     public function destroy(Phone $phone){
-
         $phone->delete();
         return 'success';
     }
