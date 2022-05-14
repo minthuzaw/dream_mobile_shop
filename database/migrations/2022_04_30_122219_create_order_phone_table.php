@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('order_phone', function (Blueprint $table) {
             $table->foreignId('order_id')->constrained();
             $table->foreignId('phone_id')->constrained();
-            $table->float('price');
+            $table->float('unit_price');
             $table->integer('quantity');
-            $table->float('total');
+            $table->float('sub_total');
             $table->timestamps();
             $table->softDeletes();
         });

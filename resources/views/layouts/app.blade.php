@@ -116,6 +116,8 @@
         })
     </script>
 
+    @livewireScripts
+
     @yield('script')
     </body>
 </x-main>
