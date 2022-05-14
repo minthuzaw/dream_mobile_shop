@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('stock');
             $table->foreignId('brand_id');
             $table->string('image')->nullable();
+            $table->text('description');
             $table->float('unit_price');
             $table->foreignId('user_id');
             $table->timestamps();

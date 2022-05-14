@@ -13,24 +13,28 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth')->group(function () {
 
     Route::middleware('role:stocker,admin')->group(function () {
-        Route::resource('phones', PhoneController::class);
-        Route::resource('brands', BrandController::class);
-        Route::resource('categories',CategoryController::class);
+        Route::resource('phones', PhoneController::class)->except(['index', 'show']);
+        Route::resource('brands', BrandController::class)->except(['index', 'show']);
+        Route::resource('categories',CategoryController::class)->except(['index', 'show']);
     });
 
     Route::middleware('role:admin')->group(function () {
         Route::resource('users', UserController::class)->except('show');
     });
 
-    Route::middleware('role:cashier')->group(function (){
-        Route::get('/',[PhoneController::class,'index'])->name('phones.view');
-        Route::get('cashier/brands',[BrandController::class,'index'])->name('brands.view');
-        Route::get('cashier/categories',[CategoryController::class,'index'])->name('categories.view');
+    Route::middleware('role:cashier,admin,stocker')->group(function (){
+        Route::resource('phones', PhoneController::class)->only(['index', 'show']);
+        Route::resource('brands', BrandController::class)->only(['index']);
+        Route::resource('categories',CategoryController::class)->only(['index']);
     });
 
     Route::middleware('role:cashier,admin')->group(function (){
-        Route::resource('order',OrderController::class);
+        //Route::resource('orders',OrderController::class);
     });
+});
+
+Route::get('/', function () {
+    return view('index');
 });
 
 require __DIR__ . '/auth.php';

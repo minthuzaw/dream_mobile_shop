@@ -1,9 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-    <x-page-header header="Edit Employee Account" />
-
-    <div class="container">
+@section('header')
+    <x-page-header header="Employee / {{$user->name}} / Edit"/>
+@endsection
+<div class="container">
         <div class="row">
             <div class="col-12 text-center pt-2">
                 <form action="{{route('users.update',$user->id)}}" method="POST" class="border p-3 mt-2 col-6">
@@ -66,8 +67,8 @@
                         @enderror
                     </div>
 
-                    <div class="d-flex justify-content-center mt-2">
-                        <button type="submit" class="btn btn-primary">Update</button>
+                    <div class="control-group  text-center mt-2">
+                        <button class="btn btn-success">Update</button>
                     </div>
                 </form>
             </div>

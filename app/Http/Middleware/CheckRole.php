@@ -16,9 +16,9 @@ class CheckRole
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next, $role1, $role2 = null)
+    public function handle(Request $request, Closure $next, $role1, $role2 = null, $role3 = null)
     {
-        $roles = collect([$role1, $role2]);
+        $roles = collect([$role1, $role2, $role3]);
         if ($roles->contains(Auth::user()->role)) {
             return $next($request);
 

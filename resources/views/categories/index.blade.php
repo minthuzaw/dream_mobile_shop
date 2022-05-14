@@ -1,8 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    {{-- <x-page-header header="Categories"/> --}}
-    {{-- <div class="float-right my-3"><a href="{{ route('categories.create') }}" class="btn btn-outline-primary">Add New Categories</a></div> --}}
+    @section('header')
+        <x-page-header header="Categories List"/>
+    @endsection
     <div class="container">
         <div class="card">
             <div class="card-body">
@@ -13,7 +14,7 @@
                         <th class="text-center no-order">Action</th>
                         <th class="text-center">Updated at</th>
                     </thead>
-    
+
                 </table>
             </div>
         </div>
@@ -52,6 +53,8 @@
                 processing: true,
                 serverSide: true,
                 responsive: true,
+                pageLength : 5,
+                lengthMenu: [[5, 10, 25, 50], [5, 10, 25, 50]],
                 ajax: "{{route('categories.index')}}",
                 columns: [
                     { data: 'id', name: 'id',class:"text-center"},
@@ -72,7 +75,7 @@
                     {
                         "targets": 'no-search',
                         'searchable': false
-                    }, 
+                    },
                 ],
                 "language": {
                         "paginate": {
@@ -83,12 +86,12 @@
                     }
             });
 
-    
+
             $(document).on('click', '.delete-btn', function(e){
                 e.preventDefault();
 
                 var id = $(this).data('id');
-                
+
                 swal({
                     title: "Are you sure?",
                     text: "Once deleted, you will not be able to recover this imaginary file!",
