@@ -87,5 +87,7 @@ class User extends Authenticatable
         return $this->role === 'stocker';
     }
 
-
+    public function phones () {
+        return $this->belongsToMany(Phone::class)->withPivot(['quantity']);
+    }
 }
