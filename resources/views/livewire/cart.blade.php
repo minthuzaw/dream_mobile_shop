@@ -1,8 +1,7 @@
 <div class="position-relative">
 
     <div class="d-flex">
-        <input wire:model="search" wire:change="searchPhones($event.target.value)" class="form-control mb-2 mr-4">
-        <button wire:click="clearSearch" class="btn btn-primary btn-sm form-control"><i class="fas fa-cross"></i></button>
+        <input wire:model="search" class="form-control mb-2 mr-4">
     </div>
 
     @if(count($searchedPhones))
@@ -15,8 +14,8 @@
                         alt=""
                         class="rounded-circle"
                     />
-                    <p>{{$phone->model}}</p>
                     <p>{{$phone->name}}</p>
+                    <p>{{$phone->model}}</p>
                     <p>{{$phone->unit_price}}</p>
                     <button wire:click="addToCart({{$phone->id}})"><i class="fas fa-cart-plus"></i></button>
                 </div>
