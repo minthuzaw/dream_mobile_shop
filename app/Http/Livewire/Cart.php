@@ -14,6 +14,7 @@ class Cart extends Component
     public $phones = [];
     public $total = 0;
 
+
     public function mount()
     {
         $this->sync();
@@ -30,6 +31,12 @@ class Cart extends Component
         $this->search = '';
         $this->searchPhones($this->search);
     }
+
+    public function updatingSearch($value)
+    {
+        $this->searchPhones($value);
+    }
+
 
     protected function fetchPhonesInCart()
     {
