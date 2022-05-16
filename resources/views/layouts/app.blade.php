@@ -63,7 +63,6 @@
     <script src="{{asset('css/vendor/fontawesome-free/js/all.min.js')}}"></script>
 
 
-
     <!-- Core plugin JavaScript-->
     <script src="{{asset('js/vendor/jquery-easing/jquery.easing.js')}}"></script>
 
@@ -101,19 +100,59 @@
     <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
 
     <script>
-        $(function($){
+        $(function ($) {
             let token = document.head.querySelector('meta[name="csrf-token"]');
 
-            if (token){
+            if (token) {
                 $.ajaxSetup({
                     headers: {
-                        'X-CSRF-TOKEN' : token.content
+                        'X-CSRF-TOKEN': token.content
                     }
                 });
-            }else{
+            } else {
                 console.log('error');
             }
         })
+
+        @if (session('success'))
+        Swal.fire({
+            icon: 'success',
+            title: 'Good Job',
+            text: "{{session('success')}}",
+        })
+        @if (session('created'))
+        Swal.fire({
+            icon: 'success',
+            title: 'Good Job',
+            text: "{{session('created')}}",
+        })
+        @endif
+        @endif
+
+        @if (session('updated'))
+        Swal.fire({
+            icon: 'success',
+            title: 'Updated',
+            text: "{{session('updated')}}",
+        })
+        @endif
+
+        @if (session('error'))
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: "{{session('error')}}",
+        })
+        @endif
+
+        var datatableDefaultConf = {
+                mark: true,
+                processing: true,
+                serverSide: true,
+                responsive: true,
+                pageLength : 10,
+                lengthMenu: [[10,25,50], [10,25,50]],
+            }
     </script>
 
     @livewireScripts

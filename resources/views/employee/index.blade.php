@@ -25,45 +25,15 @@
 @endsection
 @section('script')
     <script>
-        @if (session('success'))
-            Swal.fire({
-                icon: 'success',
-                title: 'Good Job',
-                text: "{{session('success')}}",
-            })
-        @if (session('created'))
-        Swal.fire({
-            icon: 'success',
-            title: 'Good Job',
-            text: "{{session('created')}}",
-        })
-        @endif
-        @endif
-
-        @if (session('updated'))
-            Swal.fire({
-                icon: 'success',
-                title: 'Updated',
-                text: "{{session('updated')}}",
-            })
-        @endif
-
-        @if (session('error'))
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: "{{session('error')}}",
-            })
-        @endif
 
         $(document).ready(function(){
             var table = $('.Datatable').DataTable({
-                mark: true,
-                processing: true,
-                serverSide: true,
-                responsive: true,
-                pageLength : 5,
-                lengthMenu: [[5, 10, 25, 50], [5, 10, 25, 50]],
+                mark: datatableDefaultConf.mark,
+                processing: datatableDefaultConf.processing,
+                serverSide: datatableDefaultConf.serverSide,
+                responsive: datatableDefaultConf.responsive,
+                lengthMenu: datatableDefaultConf.lengthMenu,
+                pageLength: datatableDefaultConf.pageLength,
                 ajax: "{{route('users.index')}}",
                 columns: [
                     { data: 'id', name: 'id',class:"text-center"},
@@ -76,10 +46,6 @@
                 ],
                 "order": [[6, 'desc']],
                 "columnDefs": [
-                    {
-                        "targets": 6,
-                        "visible": false
-                    },
                     {
                         'targets': 'no-order',
                         'orderable': false
@@ -103,7 +69,7 @@
                 e.preventDefault();
 
                 var id = $(this).data('id');
-
+                
                 swal({
                     title: "Are you sure?",
                     text: "Once deleted, you will not be able to recover this imaginary file!",

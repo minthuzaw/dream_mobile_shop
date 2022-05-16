@@ -32,47 +32,14 @@
 
 @section('script')
     <script>
-
-        @if (session('success'))
-        Swal.fire({
-            icon: 'success',
-            title: 'Good Job',
-            text: "{{session('success')}}",
-        })
-        @endif
-
-        @if (session('deleted'))
-        Swal.fire({
-            icon: 'success',
-            title: 'Deleted',
-            text: "{{session('deleted')}}",
-        })
-        @endif
-
-        @if (session('updated'))
-        Swal.fire({
-            icon: 'success',
-            title: 'Updated',
-            text: "{{session('updated')}}",
-        })
-        @endif
-
-        @if (session('error'))
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: "{{session('error')}}",
-        })
-        @endif
-
         $(function() {
             var table = $('#PhoneDatatable').DataTable({
                 responsive: true,
                 mark: true,
                 processing: false,
                 serverSide: true,
-                pageLength : 5,
-                lengthMenu: [[5, 10, 25, 50], [5, 10, 25, 50]],
+                pageLength : 10,
+                lengthMenu: [[10, 25, 50], [10, 25, 50]],
                 ajax: "{{route('phones.index')}}", //route
                 columns: [
                     { data: 'id', name: 'id', class: 'text-center' },

@@ -16,30 +16,35 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index(Request $request)
     {
         if($request->ajax()){
-            $employees = User::query(); //fetching employees
+            $employees = User::query(); //fetching user query builder
 
             return DataTables::of($employees)
-                ->editColumn('updated_at', function($each){
-                    return Carbon::parse($each->updated_at)->format('Y-m-d H:i:s');
+                ->editColumn('updated_at', function($employee){
+                    return Carbon::parse($employee->updated_at)->format('Y-m-d H:i:s');
                 })
-                ->addColumn('action', function($each){
-                    $edit_icon = '<a href="'.route('users.edit', $each->id).'" class="text-warning p-2" style="font-size: 20px"><i class="far fa-edit"></i></a>';
-                    $delete_icon = '<a href="#" class="text-danger delete-btn" data-id="'.$each->id.'" style="font-size: 20px"><i class="fas fa-trash-alt"></i></a>';
-                    
-                    return '<div class="action-icon">' . $edit_icon . $delete_icon .'</div>';    
+                ->addColumn('action', function($employee){
+                    $action = '<a href="'.route('users.edit', $employee->id).'" class="text-warning p-2" style="font-size: 20px"><i class="far fa-edit"></i></a>';
+                    $deleteIcon = '<a href="#" class="text-danger delete-btn" data-id="'.$employee->id.'" style="font-size: 20px"><i class="fas fa-trash-alt"></i></a>';
+
+                    if (!$employee->isAdmin()) {
+                        $action .= $deleteIcon;
+                    }
+
+
+                    return '<div class="action-icon">' . $action .'</div>';
                 })
-                ->editColumn('role', function($each){
-                    if($each->isAdmin()){
-                        return '<span class="badge rounded-pill bg-primary text-white">'.$each->role.'</span>';
-                    }elseif($each->isCashier()){
-                        return '<span class="badge rounded-pill bg-warning text-white">'.$each->role.'</span>';
+                ->editColumn('role', function($employee){
+                    if($employee->isAdmin()){
+                        return '<span class="badge rounded-pill bg-primary text-white">'.$employee->role.'</span>';
+                    }elseif($employee->isCashier()){
+                        return '<span class="badge rounded-pill bg-warning text-white">'.$employee->role.'</span>';
                     }else{
-                        return '<span class="badge rounded-pill bg-info text-white">'.$each->role.'</span>';
+                        return '<span class="badge rounded-pill bg-info text-white">'.$employee->role.'</span>';
                     }
                 })
                 ->rawColumns(['role','action'])

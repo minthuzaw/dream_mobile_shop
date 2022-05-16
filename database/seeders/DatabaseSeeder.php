@@ -18,12 +18,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        if (app()->environment() === 'production') {
+            $this->call([AdminSeeder::class]);
+        } else {
+            Phone::factory(100)->create();
+            Brand::factory(10)->create();
+            $this->call([
+                AdminSeeder::class,
+                UserSeeder::class,
+            ]);
+        }
+
+
         //User::factory(10)->create();
-        Phone::factory(100)->create();
-        Brand::factory(10)->create();
-        $this->call([
-            AdminSeeder::class,
-            UserSeeder::class,
-        ]);
+
     }
 }

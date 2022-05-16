@@ -8,6 +8,7 @@ use App\Http\Requests\PhoneUpdateRequest;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Phone;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
