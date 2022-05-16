@@ -12,4 +12,9 @@ class PhoneUser extends Model
     protected $guarded = [];
 
     protected $table = 'phone_user';
+
+    public function phone(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Phone::class);
+    }
 }

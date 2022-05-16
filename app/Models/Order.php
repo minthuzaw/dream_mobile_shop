@@ -32,7 +32,12 @@ class Order extends Model
     use HasFactory;
 
     protected $guarded = [];
+
     public function user(){
         return $this->belongsTo(User::class);
+    }
+
+    public function phones(){
+        return $this->belongsToMany(Phone::class);
     }
 }
