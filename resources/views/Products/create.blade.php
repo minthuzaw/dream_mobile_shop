@@ -2,7 +2,7 @@
 
 @section('content')
 @section('header')
-    <x-page-header header="Products / Add New Product"/>
+    <x-page-header header="Phones / Add New Phone"/>
 @endsection
     <div class="container">
 	<div class="row">

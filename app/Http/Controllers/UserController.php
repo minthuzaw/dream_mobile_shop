@@ -25,7 +25,7 @@ class UserController extends Controller
 
             return DataTables::of($employees)
                 ->editColumn('updated_at', function($employee){
-                    return Carbon::parse($employee->updated_at)->format('Y-m-d H:i:s');
+                    return Carbon::parse($employee->updated_at)->format('Y-m-d');
                 })
                 ->addColumn('action', function($employee){
                     $action = '<a href="'.route('users.edit', $employee->id).'" class="text-warning p-2" style="font-size: 20px"><i class="far fa-edit"></i></a>';
@@ -34,7 +34,6 @@ class UserController extends Controller
                     if (!$employee->isAdmin()) {
                         $action .= $deleteIcon;
                     }
-
 
                     return '<div class="action-icon">' . $action .'</div>';
                 })
@@ -69,7 +68,7 @@ class UserController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {

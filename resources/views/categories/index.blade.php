@@ -7,12 +7,12 @@
     <div class="container">
         <div class="card">
             <div class="card-body">
-                <table class="table table-bordered Datatable " style="width:100%;">
+                <table class="table table-bordered table-hover" id="categoryDatatable" style="width:100%;">
                     <thead>
                         <th class="text-center">ID</th>
                         <th class="text-center">Name</th>
                         <th class="text-center no-order">Action</th>
-                        <th class="text-center">Updated at</th>
+                        <th class="text-center">Creation Date</th>
                     </thead>
 
                 </table>
@@ -22,39 +22,14 @@
 @endsection
 @section('script')
     <script>
-
-        @if (session('success'))
-        Swal.fire({
-            icon: 'success',
-            title: 'Good Job',
-            text: "{{session('success')}}",
-        })
-        @endif
-
-        @if (session('updated'))
-        Swal.fire({
-            icon: 'success',
-            title: 'Updated',
-            text: "{{session('updated')}}",
-        })
-        @endif
-
-        @if (session('error'))
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: "{{session('error')}}",
-        })
-        @endif
-
         $(document).ready(function(){
-            var table = $('.Datatable').DataTable({
-                mark: true,
-                processing: true,
-                serverSide: true,
-                responsive: true,
-                pageLength : 5,
-                lengthMenu: [[5, 10, 25, 50], [5, 10, 25, 50]],
+            var table = $('#categoryDatatable').DataTable({
+                mark: datatableDefaultConf.mark,
+                processing: datatableDefaultConf.processing,
+                serverSide: datatableDefaultConf.serverSide,
+                responsive: datatableDefaultConf.responsive,
+                lengthMenu: datatableDefaultConf.lengthMenu,
+                pageLength: datatableDefaultConf.pageLength,
                 ajax: "{{route('categories.index')}}",
                 columns: [
                     { data: 'id', name: 'id',class:"text-center"},
@@ -64,10 +39,10 @@
                 ],
                 "order": [[3, 'desc']],
                 "columnDefs": [
-                    {
-                        "targets": 3,
-                        "visible": false
-                    },
+                    // {
+                    //     "targets": 3,
+                    //     "visible": false
+                    // },
                     {
                         'targets': 'no-order',
                         'orderable': false

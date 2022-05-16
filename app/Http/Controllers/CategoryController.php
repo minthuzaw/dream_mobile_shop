@@ -17,13 +17,13 @@ class CategoryController extends Controller
 
             return DataTables::of($categories)
                 ->editColumn('updated_at', function($category){
-                    return Carbon::parse($category->updated_at)->format('Y-m-d H:i:s');
+                    return Carbon::parse($category->updated_at)->format('Y-m-d');
                 })
                 ->addColumn('action', function($category){
-                    $edit_icon = '<a href="'. route('categories.edit', $category->id) .'" class="text-warning p-2" style="font-size: 20px"><i class="far fa-edit"></i></a>';
-                    $delete_icon = '<a href="#" class="text-danger p-2 delete-btn" style="font-size: 20px" data-id="'.$category->id.'"><i class="fas fa-trash-alt"></i></a>';
+                    $editIcon = '<a href="'. route('categories.edit', $category->id) .'" class="text-warning p-2" style="font-size: 20px"><i class="far fa-edit"></i></a>';
+                    $deleteIcon = '<a href="#" class="text-danger p-2 delete-btn" style="font-size: 20px" data-id="'.$category->id.'"><i class="fas fa-trash-alt"></i></a>';
 
-                    return '<div class="action-icon">' . $edit_icon . $delete_icon .'</div>';
+                    return '<div class="action-icon">' . $editIcon . $deleteIcon .'</div>';
                 })
                 ->rawColumns(['action'])
                 ->make(true);

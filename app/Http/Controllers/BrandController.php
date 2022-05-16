@@ -20,16 +20,16 @@ class BrandController extends Controller
 
             return Datatables::of($brands)
                 ->editColumn('updated_at', function($brand){
-                    return Carbon::parse($brand->updated_at)->format('Y-m-d H:i:s');
+                    return Carbon::parse($brand->updated_at)->format('Y-m-d');
                 })
                 ->editColumn('image', function($brand){
                     return '<img src="storage/'. $brand->image .'" alt="" style="width: 20%;height: 20%">';
                 })
                 ->addColumn('action', function($brand){
-                    $edit_icon = '<a href="'.route('brands.edit', $brand->id).'" class="text-warning p-2" style="font-size: 20px"><i class="far fa-edit"></i></a>';
-                    $delete_icon = '<a href="#" class="text-danger delete-btn" data-id="'.$brand->id.'" style="font-size: 20px"><i class="fas fa-trash-alt"></i></a>';
+                    $editIcon = '<a href="'.route('brands.edit', $brand->id).'" class="text-warning p-2" style="font-size: 20px"><i class="far fa-edit"></i></a>';
+                    $deleteIcon = '<a href="#" class="text-danger " id="delete" data-id="'.$brand->id.'" style="font-size: 20px"><i class="fas fa-trash-alt"></i></a>';
 
-                    return '<div class="action-icon">' . $edit_icon . $delete_icon .'</div>';
+                    return '<div class="action-icon">' . $editIcon . $deleteIcon .'</div>';
                     })
                 ->rawColumns(['image','action'])
                 ->make(true);

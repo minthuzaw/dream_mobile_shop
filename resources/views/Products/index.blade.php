@@ -34,12 +34,12 @@
     <script>
         $(function() {
             var table = $('#PhoneDatatable').DataTable({
-                responsive: true,
-                mark: true,
-                processing: false,
-                serverSide: true,
-                pageLength : 10,
-                lengthMenu: [[10, 25, 50], [10, 25, 50]],
+                mark: datatableDefaultConf.mark,
+                processing: datatableDefaultConf.processing,
+                serverSide: datatableDefaultConf.serverSide,
+                responsive: datatableDefaultConf.responsive,
+                lengthMenu: datatableDefaultConf.lengthMenu,
+                pageLength: datatableDefaultConf.pageLength,
                 ajax: "{{route('phones.index')}}", //route
                 columns: [
                     { data: 'id', name: 'id', class: 'text-center' },
@@ -74,9 +74,7 @@
 
             $(document).on('click', '.delete-btn', function(event){
                 event.preventDefault();
-
                 var id = $(this).data('id');
-
                 swal({
                     title: "Are you sure?",
                     icon: "warning",

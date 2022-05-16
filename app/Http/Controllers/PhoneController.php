@@ -28,15 +28,15 @@ class PhoneController extends Controller
                 });
             })
             ->addColumn('action', function($phone){
-                $edit_icon = '<a href="'. route('phones.edit', $phone->id) .'" class="text-warning" style="font-size: 20px"><i class="far fa-edit"></i></a>';
-                $delete_icon = '<a href="#" class="text-danger delete-btn pl-2" data-id="'.$phone->id.'" style="font-size: 20px"><i class="fas fa-trash-alt"></i></a>';
-                $order_icon = '<a href="#" class="text-info pl-2" data-id="'.$phone->id.'" style="font-size: 20px"><i class="fas fa-shopping-basket"></i></a>';
-                $show_icon = '<a href="'. route('phones.show', $phone->id) .'" class="text-info pl-2" data-id="'.$phone->id.'" style="font-size: 20px"><i class="fas fa-info-circle"></i></a>';
+                $editIcon = '<a href="'. route('phones.edit', $phone->id) .'" class="text-warning" style="font-size: 20px"><i class="far fa-edit"></i></a>';
+                $deleteIcon = '<a href="#" class="text-danger delete-btn pl-2" data-id="'.$phone->id.'" style="font-size: 20px"><i class="fas fa-trash-alt"></i></a>';
+                $orderIcon = '<a href="#" class="text-info pl-2" data-id="'.$phone->id.'" style="font-size: 20px"><i class="fas fa-shopping-basket"></i></a>';
+                $showIcon = '<a href="'. route('phones.show', $phone->id) .'" class="text-info pl-2" data-id="'.$phone->id.'" style="font-size: 20px"><i class="fas fa-info-circle"></i></a>';
 
                 if (auth()->user()->isCashier()) {
-                    return '<div class="action-icon">' . $order_icon . $show_icon .'</div>';
+                    return '<div class="action-icon">' . $orderIcon . $showIcon .'</div>';
                 }
-                return '<div class="action-icon">'. $edit_icon . $delete_icon . $show_icon .'</div>';
+                return '<div class="action-icon">'. $editIcon . $deleteIcon . $showIcon .'</div>';
             })
             ->editColumn('updated_at', function($phone){
                 return Carbon::parse($phone->updated_at)->format('Y-m-d H:i:s');
@@ -55,7 +55,6 @@ class PhoneController extends Controller
 
     // phones.show
     public function show(Phone $phone){
-
         return view('products.show', compact('phone', ));
     }
 

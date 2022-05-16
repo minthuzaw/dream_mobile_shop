@@ -7,7 +7,7 @@
     <div class="container">
         <div class="card">
             <div class="card-body">
-                <table class="table table-bordered Datatable" style="width:100%">
+                <table class="table table-bordered table-hover" id="employeeDatatable" style="width:100%">
                     <thead>
                         <th class="text-center">ID</th>
                         <th class="text-center">Name</th>
@@ -15,7 +15,7 @@
                         <th class="text-center">Phone Number</th>
                         <th class="text-center">Role</th>
                         <th class="text-center">Action</th>
-                        <th class="text-center">Updated At</th>
+                        <th class="text-center">Creation date</th>
                     </thead>
                 </table>
             </div>
@@ -27,7 +27,7 @@
     <script>
 
         $(document).ready(function(){
-            var table = $('.Datatable').DataTable({
+            var table = $('#employeeDatatable').DataTable({
                 mark: datatableDefaultConf.mark,
                 processing: datatableDefaultConf.processing,
                 serverSide: datatableDefaultConf.serverSide,
@@ -67,9 +67,7 @@
 
             $(document).on('click', '.delete-btn', function(e){
                 e.preventDefault();
-
                 var id = $(this).data('id');
-                
                 swal({
                     title: "Are you sure?",
                     text: "Once deleted, you will not be able to recover this imaginary file!",
