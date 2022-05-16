@@ -21,8 +21,7 @@ class DatabaseSeeder extends Seeder
         if (app()->environment() === 'production') {
             $this->call([AdminSeeder::class]);
         } else {
-            Phone::factory(100)->create();
-            Brand::factory(10)->create();
+            Brand::factory(10)->hasPhones(10)->create();
             $this->call([
                 AdminSeeder::class,
                 UserSeeder::class,

@@ -53,15 +53,15 @@
            aria-expanded="true" aria-controls="collapseTwo">
             {{--<i class="fas fa-fw fa-cog"></i>--}}
             <i class="fab fa-product-hunt"></i>
-            <span>Products</span>
+            <span>Phones</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 @if(Auth::user()->isCashier())
-                    <a class="collapse-item" href="{{ route('phones.index') }}">View Products</a>
+                    <a class="collapse-item" href="{{ route('phones.index') }}">View Phones</a>
                 @else
-                    <a class="collapse-item" href="{{ route('phones.index') }}">View Products</a>
-                    <a class="collapse-item" href="{{route('phones.create')}}">Add New Products</a>
+                    <a class="collapse-item" href="{{ route('phones.index') }}">View Phones</a>
+                    <a class="collapse-item" href="{{route('phones.create')}}">Add New Phones</a>
                 @endif
             </div>
         </div>

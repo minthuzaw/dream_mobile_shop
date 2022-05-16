@@ -4,7 +4,7 @@
 @section('content')
 
     @section('header')
-        <x-page-header header="Products List"/>
+        <x-page-header header="Phones List"/>
     @endsection
 
 
