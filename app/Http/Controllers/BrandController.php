@@ -78,9 +78,11 @@ class BrandController extends Controller
     //delete
 
     public function destroy(Brand $brand){
-        Storage::delete($brand->image);
+        $image = $brand->image;
+        if($image) {
+            Storage::delete($image);
+        }
         $brand->delete();
-
         return 'success';
     }
 
