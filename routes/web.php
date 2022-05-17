@@ -3,6 +3,7 @@
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\PhoneController;
 use App\Http\Controllers\UserController;
 use App\Models\Brand;
@@ -20,6 +21,9 @@ Route::middleware('auth')->group(function () {
     Route::middleware('role:admin')->group(function () {
         Route::resource('users', UserController::class)->except('show');
         Route::get('users/export',[UserController::class, 'export'])->name('users.export');
+        Route::get('brands/export',[BrandController::class, 'export'])->name('brands.export');
+
+
     });
 
     Route::middleware('role:cashier,admin,stocker')->group(function () {
@@ -30,9 +34,12 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('role:cashier,admin')->group(function () {
         //Route::resource('orders',OrderController::class);
+        Route::get('cart',[ CartController::class, 'cart'])->name('cart');
+        Route::get('invoice/{order}',[ InvoiceController::class, 'invoice'])->name('invoice');
+
     });
 
-    Route::get('cart',[ CartController::class, 'cart'])->name('cart');
+
 });
 
 Route::get('/', function () {

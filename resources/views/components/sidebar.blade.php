@@ -91,6 +91,9 @@
     @if(Auth::user()->isAdmin())
         <x-admin-sidebar/>
     @endif
+    @if(Auth::user()->isCashier())
+        <x-cashier-sidebar/>
+    @endif
 
     <!-- Sidebar Toggler (Sidebar) -->
 

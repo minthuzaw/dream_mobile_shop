@@ -9,18 +9,28 @@
 
 
     @if(count($searchedPhones))
-        <div class="card card-body position-absolute bg-secondary text-white" style="left: 0; right: 0">
+        <div class="card card-body position-absolute bg-secondary text-white" style="left: 0; right: 0;opacity: 90%;top: 100px">
+            <div class="border-bottom py-1 d-flex justify-content-between align-items-center">
+                <p style="width: 120px">Image</p>
+                <p class="w-25">Brand</p>
+                <p class="w-25">Name</p>
+                <p class="w-25">Stock</p>
+                <p class="w-25">Price</p>
+                <p class="">Action</p>
+
+            </div>
             @foreach($searchedPhones as $phone)
-                <div class="border-bottom py-1 d-flex justify-content-between align-items-center">
+                <div class="border-bottom py-1 d-flex justify-content-center align-items-right">
                     <img
                         src="https://i.pravatar.cc/30?u={{ $phone->id }}"
-                        style="width: 30px; height: 30px"
+                        style="width: 50px; height: 50px"
                         alt=""
-                        class="rounded-circle"
+                        class="rounded-circle "
                     />
-                    <p>{{$phone->name}}</p>
-                    <p>{{$phone->model}}</p>
-                    <p>{{$phone->unit_price}}</p>
+                    <p class="w-25 ml-5">{{$phone->brand->name}}</p>
+                    <p class="w-25">{{$phone->name}}</p>
+                    <p class="w-25">{{$phone->stock}}</p>
+                    <p class="w-25">{{$phone->unit_price}}</p>
                     <button wire:click="addToCart({{$phone->id}})"><i class="fas fa-cart-plus"></i></button>
                 </div>
             @endforeach
@@ -75,6 +85,7 @@
             <thead class="bg-light">
             <tr>
                 <th>Photo</th>
+                <th>Brand</th>
                 <th>Name</th>
                 <th>Unit Price</th>
                 <th>Quantity</th>
@@ -93,6 +104,7 @@
                             class="rounded-circle"
                         />
                     </td>
+                    <td>{{$phone->brand->name}}</td>
                     <td>{{$phone->name}}</td>
                     <td>{{$phone->unit_price}}</td>
                     <td>{{optional($phone->pivot)->quantity}}</td>

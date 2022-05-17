@@ -4,6 +4,13 @@
 @section('header')
     <x-page-header header="Brands List"/>
 @endsection
+@if(Auth::user()->isAdmin())
+<div class="d-flex justify-content-end container my-2">
+<form action="{{route('brands.export')}}">
+    <button class="btn btn-primary" type="submit">Export</button>
+</form>
+</div>
+@endif
 <div class="container">
     <div class="card">
         <div class="card-body">

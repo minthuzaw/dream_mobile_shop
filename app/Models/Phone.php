@@ -61,4 +61,9 @@ class Phone extends Model
             });
         });
     }
+
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class);
+    }
 }

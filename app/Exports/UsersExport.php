@@ -25,13 +25,13 @@ class UsersExport implements FromCollection, WithHeadings, Responsable
 
     public function collection()
     {
-        return User::all();
+        return User::select('id', 'name', 'email', 'phone_number', 'role')->get();
     }
 
 
     public function headings(): array
     {
-        return ['id', 'name', 'email', 'mobile_number', 'role'];
+        return ['id', 'name', 'email', 'phone_number', 'role'];
     }
 
 

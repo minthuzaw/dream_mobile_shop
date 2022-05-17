@@ -8,12 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class OrderPhone extends Model
 {
     use HasFactory;
-
-    public function order()
+    protected $table = 'order_phone';
+    public function orders()
     {
         return $this->belongsToMany(Order::class);
     }
-    public function phone(){
+    public function phones(){
         return $this->belongsToMany(Phone::class);
     }
 }

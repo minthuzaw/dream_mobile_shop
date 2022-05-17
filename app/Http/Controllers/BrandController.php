@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\BrandsExport;
 use App\Http\Requests\BrandCreateRequest;
 use App\Http\Requests\BrandUpdateRequest;
 use App\Models\Brand;
@@ -84,6 +85,11 @@ class BrandController extends Controller
         }
         $brand->delete();
         return 'success';
+    }
+
+    public function export()
+    {
+        return new BrandsExport();
     }
 
 
