@@ -16,18 +16,25 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $users =[
+        $users = [
             [
                 'name' => 'cashier',
                 'email' => 'cashier@gmail.com',
-                'password' => Hash::make('cashier123'),
+                'password' => Hash::make('password'),
+                'phone_number' => '09123456789',
+                'role' => 'cashier',
+            ],
+            [
+                'name' => 'cashier1',
+                'email' => 'cashier1@gmail.com',
+                'password' => Hash::make('password'),
                 'phone_number' => '09123456789',
                 'role' => 'cashier',
             ],
             [
                 'name' => 'stocker',
                 'email' => 'stocker@gmail.com',
-                'password' => Hash::make('stocker123'),
+                'password' => Hash::make('password'),
                 'phone_number' => '09123456789',
                 'role' => 'stocker',
             ],

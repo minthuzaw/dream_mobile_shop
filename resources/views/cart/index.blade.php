@@ -13,32 +13,4 @@
 </div>
 @endsection
 
-@section('script')
-    <script>
-        @if (session('success'))
-        Swal.fire({
-            icon: 'success',
-            title: 'Good Job',
-            text: "{{session('success')}}",
-        })
-        @endif
-
-        @if (session('updated'))
-        Swal.fire({
-            icon: 'success',
-            title: 'Updated',
-            text: "{{session('updated')}}",
-        })
-        @endif
-        @if (session('error'))
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: "{{session('error')}}",
-        })
-        @endif
-
-    </script>
-@endsection
-
 

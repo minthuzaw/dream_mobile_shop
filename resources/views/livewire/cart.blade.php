@@ -2,13 +2,11 @@
     <div class="d-flex justify-content-end my-3 align-items-center">
         <b>Total : {{$total}}</b>
         <button class="btn btn-primary ml-5"
-                wire:click="toggleIsCheckingOut" {{ !count($phones) ? 'disabled' : ''  }}> {{  $isCheckingOut ? 'Cancel' : 'Checkout'  }}</button>
+                {{-- Disabled checkout button When cashier does not select items --}}
+                wire:click="toggleIsCheckingOut" {{ !count($phones) ? 'disabled' : ''  }}> {{  $isCheckingOut ? 'Cancel' : 'Checkout'  }}
+        </button>
     </div>
 
-
-    <div class="d-flex">
-        <input wire:model="search" class="form-control mb-2">
-    </div>
 
     @if(count($searchedPhones))
         <div class="card card-body position-absolute bg-secondary text-white" style="left: 0; right: 0">
@@ -69,6 +67,10 @@
         </div>
 
     @else
+        <div class="d-flex">
+            <input wire:model="search" class="form-control mb-2">
+        </div>
+
         <table class="table align-middle mb-0 bg-white ">
             <thead class="bg-light">
             <tr>

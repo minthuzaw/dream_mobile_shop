@@ -19,6 +19,7 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('role:admin')->group(function () {
         Route::resource('users', UserController::class)->except('show');
+        Route::get('users/export',[UserController::class, 'export'])->name('users.export');
     });
 
     Route::middleware('role:cashier,admin,stocker')->group(function () {

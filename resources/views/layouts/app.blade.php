@@ -118,13 +118,13 @@
         Swal.fire({
             icon: 'success',
             title: 'Good Job',
-            text: "{{session('success')}}",
+            html: "{!! session('success') !!}",
         })
         @if (session('created'))
         Swal.fire({
             icon: 'success',
             title: 'Good Job',
-            text: "{{session('created')}}",
+             html: "{!! session('created') !!}",
         })
         @endif
         @endif
@@ -141,18 +141,18 @@
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: "{{session('error')}}",
+             html: "{!! session('error') !!}",
         })
         @endif
 
         var datatableDefaultConf = {
-                mark: true,
-                processing: true,
-                serverSide: true,
-                responsive: true,
-                pageLength : 10,
-                lengthMenu: [[10,25,50], [10,25,50]],
-            }
+            mark: true,
+            processing: true,
+            serverSide: true,
+            responsive: true,
+            pageLength: 10,
+            lengthMenu: [[10, 25, 50], [10, 25, 50]],
+        }
     </script>
 
     @livewireScripts
