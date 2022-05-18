@@ -5,6 +5,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\PhoneController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Models\Brand;
 use Illuminate\Support\Facades\Route;
@@ -29,6 +30,8 @@ Route::middleware('auth')->group(function () {
         Route::resource('phones', PhoneController::class)->only(['index', 'show']);
         Route::resource('brands', BrandController::class)->only(['index']);
         Route::resource('categories', CategoryController::class)->only(['index']);
+        //for profile
+        Route::get('profiles',[ProfileController::class, 'index'])->name('profiles.index');
     });
 
     Route::middleware('role:cashier,admin')->group(function () {
