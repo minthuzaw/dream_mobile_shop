@@ -94,15 +94,15 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            @foreach($order_phones as $order_phone)
+                                            @foreach($order->phones as $phone)
                                                 <tr>
                                                     <td>
-                                                        {{$order_phone->phone->brand->name}}
+                                                        {{$phone->brand->name}}
                                                     </td>
-                                                    <td>{{$order_phone->phone->name}}</td>
-                                                    <td>{{$order_phone->phone->unit_price}}</td>
-                                                    <td>{{$order_phone->quantity}}</td>
-                                                    <td>{{$order_phone->sub_total}}</td>
+                                                    <td>{{$phone->name}}</td>
+                                                    <td>{{$phone->pivot->unit_price}}</td>
+                                                    <td>{{$phone->pivot->quantity}}</td>
+                                                    <td>{{$phone->pivot->sub_total}}</td>
                                                 </tr>
                                             @endforeach
                                             <tr>
@@ -137,6 +137,7 @@
         printButton.style.display = 'none';
         window.print();
         printButton.style.display = 'block';
+        window.location.href = "{{route('cart')}}";
     }
 </script>
 </body>
