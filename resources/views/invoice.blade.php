@@ -100,7 +100,7 @@
                                                         {{$order_phone->phone->brand->name}}
                                                     </td>
                                                     <td>{{$order_phone->phone->name}}</td>
-                                                    <td>{{$order_phone->unit_price}}</td>
+                                                    <td>{{$order_phone->phone->unit_price}}</td>
                                                     <td>{{$order_phone->quantity}}</td>
                                                     <td>{{$order_phone->sub_total}}</td>
                                                 </tr>
@@ -112,7 +112,7 @@
                                                 </td>
                                                 <td>
                                                     <h5 class="text-success">
-                                                        <strong>{{$order->total + 100 + 49}}</strong></h5>
+                                                        <strong>{{$order->total}}</strong></h5>
                                                 </td>
                                             </tr>
                                             </tbody>

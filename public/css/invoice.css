@@ -1,18 +1,14 @@
 body{margin-top:20px;
     color: #2e323c;
-    background: #f5f6fa;
     position: relative;
     height: 100%;
 }
-.invoice-container {
-    padding: 1rem;
-}
 .invoice-container .invoice-header .invoice-logo {
-    margin: 0.8rem 0 0 0;
     display: inline-block;
     font-size: 1.6rem;
     font-weight: 700;
     color: #2e323c;
+    text-decoration: none;
 }
 .invoice-container .invoice-header .invoice-logo img {
     max-width: 130px;
@@ -87,11 +83,10 @@ body{margin-top:20px;
     border: 1px solid #e0e3ec;
 }
 .custom-table thead {
-    background: #007ae1;
+    background: #f5f6fa;
 }
 .custom-table thead th {
-    border: 0;
-    color: #ffffff;
+    border: 1px solid #e0e3ec;
 }
 .custom-table > tbody tr:hover {
     background: #fafafa;
