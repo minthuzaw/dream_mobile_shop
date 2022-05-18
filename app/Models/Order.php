@@ -37,6 +37,6 @@ class Order extends Model
         return $this->belongsTo(User::class);
     }
     public function phones(){
-        return $this->belongsToMany(Phone::class);
+        return $this->belongsToMany(Phone::class)->withPivot('unit_price','quantity','sub_total')->using(OrderPhone::class);
     }
 }

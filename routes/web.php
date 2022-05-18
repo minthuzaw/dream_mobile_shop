@@ -6,7 +6,6 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\PhoneController;
 use App\Http\Controllers\UserController;
-use App\Models\Brand;
 use Illuminate\Support\Facades\Route;
 
 
