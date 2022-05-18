@@ -12,6 +12,7 @@ use App\Models\Phone;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 
 class PhoneController extends Controller
@@ -56,7 +57,7 @@ class PhoneController extends Controller
 
     // phones.show
     public function show(Phone $phone){
-        return view('products.show', compact('phone', ));
+        return view('products.show', compact('phone'));
     }
 
     // phones.create
@@ -66,9 +67,9 @@ class PhoneController extends Controller
     }
 
     // phone store
-
     public function store(PhoneCreateRequest $request){
         $attributes = $request->validated();
+        $attributes['image'] = $request->file('image')->store('images', 'public');
 
         Phone::create($attributes + [
             'user_id' => auth()->id()
@@ -87,6 +88,11 @@ class PhoneController extends Controller
     public function update(PhoneUpdateRequest $request, Phone $phone){
         $attributes = $request->validated();
 
+        if (request()->hasFile('image')){
+            Storage::delete('storage/'.$phone->image);
+            $attributes['image'] = $request->file('image')->store('images', 'public');
+        }
+
         $phone->update($attributes);
 
         return redirect()->route('phones.index')->with('updated', 'Phone Updated Successfully');
@@ -94,6 +100,10 @@ class PhoneController extends Controller
 
     // destroy
     public function destroy(Phone $phone){
+        $image = $phone->image;
+        if($image) {
+            Storage::delete($image);
+        }
         $phone->delete();
         return 'success';
     }

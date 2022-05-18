@@ -27,6 +27,7 @@ class PhoneCreateRequest extends FormRequest
             'model' => 'required',
             'name' => 'required',
             'stock' => 'required',
+            'image' => ['required', 'image'],
             'brand_id' => 'required',
             'unit_price' => 'required',
             'description' => 'required',
