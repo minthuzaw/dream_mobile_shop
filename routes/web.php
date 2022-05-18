@@ -22,8 +22,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('users', UserController::class)->except('show');
         Route::get('users/export',[UserController::class, 'export'])->name('users.export');
         Route::get('brands/export',[BrandController::class, 'export'])->name('brands.export');
-
-
+        Route::get('phones/export',[PhoneController::class, 'export'])->name('phones.export');
     });
 
     Route::middleware('role:cashier,admin,stocker')->group(function () {

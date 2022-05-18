@@ -31,7 +31,7 @@
                             <div class="row gutters" id="pp">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                                     <div class="custom-actions-btns mb-5">
-                                        <button  class="btn btn-primary" id="print" onclick="printButton()">
+                                        <button class="btn btn-primary" id="print" onclick="printButton()">
                                             Print
                                         </button>
                                     </div>
@@ -95,15 +95,15 @@
                                             </thead>
                                             <tbody>
                                             @foreach($order_phones as $order_phone)
-                                            <tr>
-                                                <td>
-                                                    {{$order_phone->phone->brand->name}}
-                                                </td>
-                                                <td>{{$order_phone->phone->name}}</td>
-                                                <td>{{$order_phone->unit_price}}</td>
-                                                <td>{{$order_phone->quantity}}</td>
-                                                <td>{{$order_phone->sub_total}}</td>
-                                            </tr>
+                                                <tr>
+                                                    <td>
+                                                        {{$order_phone->phone->brand->name}}
+                                                    </td>
+                                                    <td>{{$order_phone->phone->name}}</td>
+                                                    <td>{{$order_phone->unit_price}}</td>
+                                                    <td>{{$order_phone->quantity}}</td>
+                                                    <td>{{$order_phone->sub_total}}</td>
+                                                </tr>
                                             @endforeach
                                             <tr>
                                                 <td colspan="2">&nbsp;</td>
@@ -111,7 +111,8 @@
                                                     <h5 class="text-success"><strong>Grand Total</strong></h5>
                                                 </td>
                                                 <td>
-                                                    <h5 class="text-success"><strong>{{$order->total + 100 + 49}}</strong></h5>
+                                                    <h5 class="text-success">
+                                                        <strong>{{$order->total + 100 + 49}}</strong></h5>
                                                 </td>
                                             </tr>
                                             </tbody>
@@ -131,12 +132,12 @@
     </div>
 </div>
 <script>
-   function printButton() {
-       var printButton = document.getElementById("pp");
-       printButton.style.display = 'none';
-       window.print();
-       printButton.style.display = 'block';
-   }
+    function printButton() {
+        var printButton = document.getElementById("pp");
+        printButton.style.display = 'none';
+        window.print();
+        printButton.style.display = 'block';
+    }
 </script>
 </body>
 </html>

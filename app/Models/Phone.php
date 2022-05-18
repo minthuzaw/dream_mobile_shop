@@ -41,7 +41,7 @@ class Phone extends Model
         return $this->belongsTo(Brand::class);
     }
 
-    public function category(){
+    public function categorys(){
         return $this->belongsToMany(Category::class);
     }
 

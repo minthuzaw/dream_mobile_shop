@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Exports\PhonesExport;
 use App\Http\Requests\PhoneCreateRequest;
 use App\Http\Requests\PhoneUpdateRequest;
 use App\Models\Brand;
@@ -95,6 +96,11 @@ class PhoneController extends Controller
     public function destroy(Phone $phone){
         $phone->delete();
         return 'success';
+    }
+
+    public function export()
+    {
+        return new PhonesExport();
     }
 
 }

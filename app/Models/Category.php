@@ -27,7 +27,7 @@ class Category extends Model
 
     protected $guarded = [];
 
-    public function phone(){
+    public function phones(){
         return $this->belongsToMany(Phone::class);
     }
 }

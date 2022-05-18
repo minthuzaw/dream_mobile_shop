@@ -6,10 +6,9 @@
                 wire:click="toggleIsCheckingOut" {{ !count($phones) ? 'disabled' : ''  }}> {{  $isCheckingOut ? 'Cancel' : 'Checkout'  }}
         </button>
     </div>
-
-
     @if(count($searchedPhones))
-        <div class="card card-body position-absolute bg-secondary text-white" style="left: 0; right: 0;opacity: 90%;top: 100px">
+        <div class="card card-body position-absolute bg-secondary text-white"
+             style="left: 0; right: 0;opacity: 90%;top: 100px">
             <div class="border-bottom py-1 d-flex justify-content-between align-items-center">
                 <p style="width: 120px">Image</p>
                 <p class="w-25">Brand</p>
@@ -17,7 +16,6 @@
                 <p class="w-25">Stock</p>
                 <p class="w-25">Price</p>
                 <p class="">Action</p>
-
             </div>
             @foreach($searchedPhones as $phone)
                 <div class="border-bottom py-1 d-flex justify-content-center align-items-right">
@@ -36,8 +34,6 @@
             @endforeach
         </div>
     @endif
-
-
     @if($isCheckingOut)
         <div>
             <h5 class="py-2">Enter customer's details</h5>
@@ -70,17 +66,14 @@
                 <small class="text-danger">{{ $message }}</small>
                 @enderror
             </div>
-
             <div class="d-flex justify-content-end py-2">
                 <button class="btn btn-primary" wire:click="checkout">Submit</button>
             </div>
         </div>
-
     @else
         <div class="d-flex">
             <input wire:model="search" class="form-control mb-2">
         </div>
-
         <table class="table align-middle mb-0 bg-white ">
             <thead class="bg-light">
             <tr>
@@ -109,7 +102,6 @@
                     <td>{{$phone->unit_price}}</td>
                     <td>{{optional($phone->pivot)->quantity}}</td>
                     <td>{{optional($phone->pivot)->quantity * $phone->unit_price}}</td>
-
                     <td>
                         <button wire:click="decreaseItem({{$phone->id}})"><i class="fas fa-minus"></i></button>
                         <button wire:click="increaseItem({{$phone->id}})"><i class="fas fa-plus"></i></button>
@@ -120,6 +112,4 @@
             </tbody>
         </table>
     @endif
-
-
 </div>
