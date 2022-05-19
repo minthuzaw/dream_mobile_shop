@@ -8,11 +8,13 @@ use App\Http\Requests\PhoneCreateRequest;
 use App\Http\Requests\PhoneUpdateRequest;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\CategoryPhone;
 use App\Models\Phone;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\ValidationException;
 use Yajra\DataTables\Facades\DataTables;
 
 class PhoneController extends Controller
@@ -63,25 +65,32 @@ class PhoneController extends Controller
     // phones.create
     public function create(){
         $brands = Brand::get()->pluck('name','id');
-        return view('products.create', compact('brands'));
+        $categories = Category::get()->pluck('name','id');
+        return view('products.create', compact('brands', 'categories'));
     }
 
     // phone store
     public function store(PhoneCreateRequest $request){
         $attributes = $request->validated();
+        $categories = [];
+        foreach ($attributes['categories'] as $category) {
+            $categories[] = $category;
+        }
+        unset($attributes['categories']);
         $attributes['image'] = $request->file('image')->store('images', 'public');
+        $phone = Phone::create($attributes);
+        foreach ($categories as $category) {
+            $phone->categories()->attach($category);
+        }
 
-        Phone::create($attributes + [
-            'user_id' => auth()->id()
-        ]);
         return redirect()->route('phones.index')->with('success', 'Phone Created Successfully');
     }
 
     // edit
     public function edit(Phone $phone){
         $brands = Brand::get()->pluck('name','id');
-//        $categories = Category::get()->pluck('name','id');
-        return view('products.edit', compact('phone', 'brands'));
+        $categories = Category::get()->pluck('name','id');
+        return view('products.edit', compact('phone', 'brands', 'categories'));
     }
 
     //update

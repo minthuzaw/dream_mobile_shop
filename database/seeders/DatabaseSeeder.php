@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Brand;
+use App\Models\Category;
 use App\Models\Phone;
 use App\Models\User;
 use Database\Factories\UserFactory;
@@ -25,6 +26,7 @@ class DatabaseSeeder extends Seeder
             $this->call([
                 AdminSeeder::class,
                 UserSeeder::class,
+                CategorySeeder::class,
             ]);
         }
 

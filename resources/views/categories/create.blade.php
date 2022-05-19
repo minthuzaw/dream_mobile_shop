@@ -7,7 +7,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-12 text-center pt-2">
-            <form method="POST" action="{{ route('categories.store') }}" class="border p-3 mt-2 col-6" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('categories.store') }}" class="border p-3 mt-2 col-6 bg-gray-200 mx-auto" enctype="multipart/form-data">
                 @csrf
                 <div class="control-group text-left">
                     <label for="Categories Name">Category Name</label>

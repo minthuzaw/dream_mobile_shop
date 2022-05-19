@@ -31,7 +31,22 @@ class PhoneCreateRequest extends FormRequest
             'brand_id' => 'required',
             'unit_price' => 'required',
             'description' => 'required',
-
+            'user_id' => 'required',
+            'categories' => 'required',
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'model.required' => 'Model is required',
+            'name.required' => 'Name is required',
+            'stock.required' => 'Stock is required',
+            'image.required' => 'Image is required',
+            'brand_id.required' => 'Brand is required',
+            'unit_price.required' => 'Price is required',
+            'description.required' => 'Description is required',
+            'categories.required' => 'Select at least one category',
+            'user_id' => 'required',
         ];
     }
 }

@@ -7,7 +7,7 @@
 <div class="container">
         <div class="row">
             <div class="col-12 text-center pt-2">
-                <form action="{{route('users.update',$user->id)}}" method="POST" class="border p-3 mt-2 col-6">
+                <form action="{{route('users.update',$user->id)}}" method="POST" class="border p-3 mt-2 col-6 bg-gray-200 mx-auto">
                     @csrf
                     @method('PUT')
                     <div class="control-group text-left">
