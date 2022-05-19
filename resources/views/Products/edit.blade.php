@@ -9,7 +9,7 @@
         <div class="col text-center pt-2">
             <form id="add-frm" method="POST" action="{{route('phones.update',$phone->id)}}"
                   enctype="multipart/form-data"
-                  class="border p-3 mt-2 col-6 bg-gray-200">
+                  class="border p-3 mt-2 col-6 bg-gray-200 mx-auto">
                 @csrf
                 @method('PUT')
                 <div class="row row-cols-2">
@@ -33,11 +33,32 @@
                         </div>
                     </div>
                     <div class="col">
+                        <div class="control-group  text-left">
+                            <label for="body">Select Brand</label>
+                            <select class="form-control form-select" aria-label="Default select example" name="brand_id">
+                                <option disabled selected>Select Brand</option>
+                                @foreach ($brands as $id => $brand)
+                                    <option value="{{$id}}" @if($id == $phone->brand_id) selected @endif>{{$brand}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
                         <div class="control-group text-left ">
                             <label for="body">Stock</label>
                             <div>
                                 <input type="number" id="stock" class="form-control mb-4" name="stock"
                                        placeholder="Stocks count" rows="" value="{!! $phone->stock !!}"
+                                       required></input>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="control-group text-left">
+                            <label for="body">Price</label>
+                            <div>
+                                <input type="number" id="unit_price" class="form-control mb-4" name="unit_price"
+                                       placeholder="Enter Phone Price" rows="" value="{!! $phone->unit_price !!}"
                                        required></input>
                             </div>
                         </div>
@@ -53,23 +74,15 @@
                     </div>
                 </div>
 
-                <div class="control-group  text-left mt-2">
-                    <label for="body">Select Brand</label>
-                    <select class="form-control form-select" aria-label="Default select example" name="brand_id">
-                        <option disabled selected>Select Brand</option>
-                        @foreach ($brands as $id => $brand)
-                            <option value="{{$id}}" @if($id == $phone->brand_id) selected @endif>{{$brand}}</option>
+                <div class="control-group  text-left">
+                    <label for="body">Select Category</label>
+                    <p style="font-size: 0.6rem">( Hold down the Ctrl (windows) or Command (Mac) button to select multiple options. )</p>
+                    <select class="form-control form-select" aria-label="Default select example"
+                            name="category_id[]" multiple class="w-25">
+                        @foreach ($categories as $id => $category)
+                            <option value="{{$id}}">{{$category}}</option>
                         @endforeach
                     </select>
-                </div>
-
-                <div class="control-group text-left mt-2">
-                    <label for="body">Price</label>
-                    <div>
-                        <input type="number" id="unit_price" class="form-control mb-4" name="unit_price"
-                               placeholder="Enter Phone Price" rows="" value="{!! $phone->unit_price !!}"
-                               required></input>
-                    </div>
                 </div>
 
                 <div class="control-group  text-left mt-2">

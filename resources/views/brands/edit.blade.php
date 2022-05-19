@@ -7,7 +7,7 @@
 <div class="container">
     <div class="row">
         <div class="col-12 pt-2">
-    <form method="POST" action="{{ route('brands.update',$brand->id) }}" enctype="multipart/form-data" class="border p-3 mt-2 col-6">
+    <form method="POST" action="{{ route('brands.update',$brand->id) }}" enctype="multipart/form-data" class="border p-3 mt-2 col-6 bg-gray-200 mx-auto">
         @csrf
         @method('PUT')
         <div class="control-group text-left">

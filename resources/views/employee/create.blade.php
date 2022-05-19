@@ -7,8 +7,8 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-12 text-center pt-2">
-                <form action="{{route('users.store')}}" method="POST" class="border p-3 mt-2 col-6">
+            <div class="col-12 text-center pt-2 ">
+                <form action="{{route('users.store')}}" method="POST" class="border p-3 mt-2 col-6 bg-gray-200 mx-auto">
                     @csrf
                     <div class="control-group text-left">
                         <label for="name">Name</label>

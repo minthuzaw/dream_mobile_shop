@@ -34,7 +34,6 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::middleware('role:cashier,admin')->group(function () {
-        //Route::resource('orders',OrderController::class);
         Route::get('cart',[ CartController::class, 'cart'])->name('cart');
         Route::get('invoice/{order}',[ InvoiceController::class, 'invoice'])->name('invoice');
 

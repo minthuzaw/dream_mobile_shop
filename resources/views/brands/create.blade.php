@@ -6,7 +6,7 @@
 @endsection
 <div class="row">
     <div class="col-12 text-center pt-2">
-    <form method="POST" action="{{ route('brands.store') }}" enctype="multipart/form-data" class="border p-3 mt-2 col-6">
+    <form method="POST" action="{{ route('brands.store') }}" enctype="multipart/form-data" class="border p-3 mt-2 col-6 bg-gray-200 mx-auto">
         @csrf
         <div class="control-group text-left">
             <label for="Brands Name"> Name</label>
