@@ -23,9 +23,9 @@
 
 <!-- Nav Item - Charts -->
 <li class="nav-item">
-    <a class="nav-link" href="">
+    <a class="nav-link" href="{{route('dashboard')}}">
         <i class="fas fa-fw fa-chart-area"></i>
-        <span>Charts</span></a>
+        <span>Dashboard</span></a>
 </li>
 
 <!-- Divider -->

@@ -31,9 +31,9 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
-        if (Auth::user()->role == 'admin'){
-            return redirect()->route('users.index');
-        }else if(Auth::user()->role == 'cashier'){
+        if (Auth::user()->isAdmin()){
+            return redirect()->route('dashboard');
+        }else if(Auth::user()->isCashier()){
             return redirect()->route('cart');
         }
         else{

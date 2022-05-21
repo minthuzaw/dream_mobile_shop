@@ -73,8 +73,9 @@
 
     <!-- Page level custom scripts -->
     <script src="{{asset('js/vendor/sb-admin-2.min.js')}}"></script>
-    <script src="{{asset('js/vendor/demo/chart-area-demo.js')}}"></script>
-    <script src="{{asset('js/vendor/demo/chart-pie-demo.js')}}"></script>
+    <script src="{{asset('js/vendor/demo/chart-line.js')}}"></script>
+    <script src="{{asset('js/vendor/demo/chart-pie.js')}}"></script>
+    <script src="{{asset('js/vendor/demo/chart-bar.js')}}"></script>
     <script src="{{asset('js/products-show.js')}}"></script>
 
     {{-- sweet alert2 --}}

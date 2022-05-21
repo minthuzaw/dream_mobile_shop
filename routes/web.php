@@ -3,6 +3,7 @@
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\PhoneController;
 use App\Http\Controllers\ProfileController;
@@ -23,6 +24,7 @@ Route::middleware('auth')->group(function () {
         Route::get('users/export',[UserController::class, 'export'])->name('users.export');
         Route::get('brands/export',[BrandController::class, 'export'])->name('brands.export');
         Route::get('phones/export',[PhoneController::class, 'export'])->name('phones.export');
+        Route::get('dashboard',[DashboardController::class,'index'])->name('dashboard');
     });
 
     Route::middleware('role:cashier,admin,stocker')->group(function () {
