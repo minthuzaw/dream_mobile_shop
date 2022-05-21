@@ -89,6 +89,7 @@
     <hr class="sidebar-divider">
 
     @if(Auth::user()->isAdmin())
+        <x-cashier-sidebar/>
         <x-admin-sidebar/>
     @endif
     @if(Auth::user()->isCashier())
