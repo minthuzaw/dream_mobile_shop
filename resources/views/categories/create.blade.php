@@ -11,7 +11,7 @@
                 @csrf
                 <div class="control-group text-left">
                     <label for="Categories Name">Category Name</label>
-                    <input type="text" name="name" class="form-control mb-4" id="CategoriesName"
+                    <input type="text" name="name" class="form-control mb-4" id="CategoriesName" value="{{ old('name') }}"
                            placeholder="Categories name" required>
                 </div>
                 <div class="control-group  text-center mt-2">
