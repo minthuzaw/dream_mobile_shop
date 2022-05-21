@@ -202,7 +202,7 @@ class Cart extends Component
             session()->flash('error', 'Something went wrong.');
         }
 
-        return redirect()->to(route('invoice', ['order' => $order->id]));
+        return redirect()->to(route('cart'));
     }
 
     public function render()

@@ -31,22 +31,14 @@ function ShowChartBar(phonesName,quantity,selectedYear) {
         }
     }
 
-    <!-- Filter Undefined Value -->
-    phonesName = phonesName.filter(element => {
-        return element !== null;
-    });
-    quantity = quantity.filter(element => {
-        return element !== null;
-    });
-
-
     <!-- Sort Phone By Quantity Sold -->
-    let arrayOfObj = phonesName.map(function (d, i) {
+    let arrayOfObj = phonesName.map(function (currentValue, index) {
         return {
-            label: d,
-            data: quantity[i] || 0
+            label: currentValue,
+            data: quantity[index] || 0
         };
     });
+
 
     let sortedArrayOfObj = arrayOfObj.sort(function (a, b) {
         return b.data - a.data;

@@ -13,14 +13,6 @@ for (let i=0; i<yearlyTotalSales.length; ++i){
     yearlySales.push(yearlyTotalSales[i]['total']);
 }
 
-<!-- Filter Undefined Value -->
-years = years.filter(element => {
-    return element !== null;
-});
-yearlySales = yearlySales.filter(element => {
-    return element !== null;
-});
-
 <!-- Chart Config -->
 new Chart(ctxPie, {
     type: 'doughnut',

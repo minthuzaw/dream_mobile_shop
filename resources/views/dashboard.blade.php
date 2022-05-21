@@ -15,8 +15,8 @@
                     <h6 class="m-0 font-weight-bold text-primary">Earnings</h6>
                     <div>
                         Select Year :
-                        <select class="form-select h-75" aria-label="Default select example"
-                                name="brand_id" id="year">
+                        <select class="form-select" aria-label="Default select example"
+                                name="brand_id" id="year" onchange="getSelectedYearLine()">
                             @foreach ($years as $year)
                                 @if($year == \Carbon\Carbon::now()->year)
                                     <option value="{{$year}}" selected>{{$year}}</option>
@@ -25,7 +25,6 @@
                                 @endif
                             @endforeach
                         </select>
-                        <button onclick="getSelectedYearLine()" class="btn btn-primary" id="btn-line"><i class="fas fa-search"></i></button>
                     </div>
                 </div>
                 <div class="card-body">
@@ -41,8 +40,8 @@
                     <h6 class="m-0 font-weight-bold text-primary">Best-Selling Mobile Phones</h6>
                     <div>
                         Select Year :
-                        <select class="form-select h-75" aria-label="Default select example"
-                                name="brand_id" id="year-bar">
+                        <select class="form-select" aria-label="Default select example"
+                                name="brand_id" id="year-bar" onchange="getSelectedYearBar()">
                             @foreach ($years as $year)
                                 @if($year == \Carbon\Carbon::now()->year)
                                     <option value="{{$year}}" selected>{{$year}}</option>
@@ -51,7 +50,6 @@
                                 @endif
                             @endforeach
                         </select>
-                        <button onclick="getSelectedYearBar()" class="btn btn-primary" id="btn-bar"><i class="fas fa-search"></i></button>
                     </div>
                 </div>
                 <div class="card-body">
@@ -87,9 +85,8 @@
 
 <script>
     window.onload = function(){
-        document.getElementById('btn-line').click();
-        document.getElementById('btn-bar').click();
-
+        getSelectedYearLine()
+        getSelectedYearBar()
     }
     const monthlyTotalSales = JSON.parse('{!! json_encode($monthlyTotalSales) !!}');
     const totalPhoneSold = JSON.parse('{!! json_encode($totalPhoneSold) !!}');

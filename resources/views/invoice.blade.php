@@ -47,9 +47,7 @@
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                     <address class="text-right">
-                                        {{$order->user->name}}<br>
-                                        {{$order->user->phone_number}}<br>
-                                        {{$order->user->email}}
+                                        {{Auth::user()->name}}
                                     </address>
                                 </div>
                             </div>

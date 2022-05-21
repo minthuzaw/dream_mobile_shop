@@ -31,14 +31,6 @@ function ShowChartLine(months,monthlySales,selectedYear){
         }
     }
 
-    <!-- Filter Undefined Value -->
-    months = months.filter(element => {
-        return element !== null;
-    });
-    monthlySales = monthlySales.filter(element => {
-        return element !== null;
-    });
-
     <!-- Chart Config -->
     new Chart(ctxLine, {
         type: 'line',

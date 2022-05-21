@@ -72,15 +72,14 @@ class PhoneController extends Controller
     // phone store
     public function store(PhoneCreateRequest $request){
         $attributes = $request->validated();
-        $categories = [];
-        foreach ($attributes['categories'] as $category) {
-            $categories[] = $category;
-        }
+
         unset($attributes['categories']);
         $attributes['image'] = $request->file('image')->store('images', 'public');
         $phone = Phone::create($attributes);
-        foreach ($categories as $category) {
-            $phone->categories()->attach($category);
+        if ($request['categories'] != null){
+            foreach ($request['categories'] as $category) {
+                $phone->categories()->attach($category);
+            }
         }
 
         return redirect()->route('phones.index')->with('success', 'Phone Created Successfully');
