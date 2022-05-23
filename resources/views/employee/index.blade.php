@@ -1,8 +1,9 @@
 @extends('layouts.app')
-
 @section('content')
 @section('header')
+
     <x-page-header header="Employee List"/>
+
 @endsection
 
 <div class="d-flex justify-content-end container my-2">

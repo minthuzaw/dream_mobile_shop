@@ -48,7 +48,7 @@
                 @endif
             </div>
         </div>
-        {{--For Products--}}
+        {{--For products--}}
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
            aria-expanded="true" aria-controls="collapseTwo">
             {{--<i class="fas fa-fw fa-cog"></i>--}}
@@ -98,7 +98,7 @@
 
     <!-- Sidebar Toggler (Sidebar) -->
 
-    <div class="text-center d-flex h-100 justify-content-center">
+    <div class="text-center">
         <div class="align-self-end pb-5">
             <button class="rounded-circle border-0" id="sidebarToggle"></button>
         </div>
