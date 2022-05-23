@@ -10,7 +10,7 @@
         @csrf
         <div class="control-group text-left">
             <label for="Brands Name"> Name</label>
-            <input type="text" name="name" class="form-control" id="BrandsName" placeholder="Brand name" required>
+            <input type="text" name="name" class="form-control" id="BrandsName" placeholder="Brand name" value="{{ old('name') }}" required>
         </div>
 
         <div class="control-group text-left mt-2">
