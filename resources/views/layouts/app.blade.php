@@ -77,6 +77,8 @@
     <script src="{{asset('js/vendor/demo/chart-pie.js')}}"></script>
     <script src="{{asset('js/vendor/demo/chart-bar.js')}}"></script>
     <script src="{{asset('js/products-show.js')}}"></script>
+    <script src="{{ asset('js/tinymce/tinymce.min.js') }}" referrerpolicy="origin"></script>
+
 
     {{-- sweet alert2 --}}
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -101,6 +103,13 @@
     <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
 
     <script>
+
+            tinymce.init({
+            selector: 'textarea#description', // Replace this CSS selector to match the placeholder element for TinyMCE
+            plugins: 'table lists',
+            toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | table'
+        });
+
         $(function ($) {
             let token = document.head.querySelector('meta[name="csrf-token"]');
 

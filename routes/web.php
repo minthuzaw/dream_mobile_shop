@@ -31,8 +31,9 @@ Route::middleware('auth')->group(function () {
         Route::resource('phones', PhoneController::class)->only(['index', 'show']);
         Route::resource('brands', BrandController::class)->only(['index']);
         Route::resource('categories', CategoryController::class)->only(['index']);
-        //for profile
-        Route::get('profiles',[ProfileController::class, 'index'])->name('profiles.index');
+        Route::resource('users', UserController::class)->only('show');
+
+
     });
 
     Route::middleware('role:cashier,admin')->group(function () {

@@ -22,11 +22,12 @@ class DatabaseSeeder extends Seeder
         if (app()->environment() === 'production') {
             $this->call([AdminSeeder::class]);
         } else {
-            Brand::factory(10)->hasPhones(10)->create();
             $this->call([
                 AdminSeeder::class,
                 UserSeeder::class,
                 CategorySeeder::class,
+                BrandSeeder::class,
+                PhoneSeeder::class,
             ]);
         }
 

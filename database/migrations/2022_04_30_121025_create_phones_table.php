@@ -18,9 +18,9 @@ return new class extends Migration
             $table->string('model')->nullable();
             $table->string('name');
             $table->integer('stock');
-            $table->foreignId('brand_id');
+            $table->foreignId('brand_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('image')->nullable();
-            $table->text('description');
+            $table->longText('description');
             $table->float('unit_price');
             $table->foreignId('user_id');
             $table->timestamps();

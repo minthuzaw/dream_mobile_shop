@@ -18,13 +18,24 @@ class BrandSeeder extends Seeder
     {
         $brands =[
             [
-                'name' => 'samsung',
-                'image' => 'https://picsum.photos/200/300',
+                'name' => 'Apple',
             ],
             [
-                'name' => 'apple',
-                'image' => 'https://picsum.photos/200/300',
+                'name' => 'Samsung',
             ],
+            [
+                'name' => 'Xiaomi',
+            ],
+            [
+                'name' => 'Asus',
+            ],
+            [
+                'name' => 'Oneplus',
+            ],
+            [
+                'name' => 'Sony',
+            ],
+
 
         ];
         DB::table('brands')->insert($brands);

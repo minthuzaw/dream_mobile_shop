@@ -17,34 +17,58 @@ class CategorySeeder extends Seeder
     {
         $categories = [
             [
-                'name' => 'Category 1',
+                'name' => 'Gaming',
             ],
             [
-                'name' => 'Category 2',
+                'name' => 'Flagship',
             ],
             [
-                'name' => 'Category 3',
+                'name' => 'Low-end',
             ],
             [
-                'name' => 'Category 4',
+                'name' => 'High-end',
             ],
             [
-                'name' => 'Category 5',
+                'name' => 'Mid-range',
             ],
             [
-                'name' => 'Category 6',
+                'name' => 'Apple',
             ],
             [
-                'name' => 'Category 7',
+                'name' => 'Fast-charging',
             ],
             [
-                'name' => 'Category 8',
+                'name' => 'Amoled',
             ],
             [
-                'name' => 'Category 9',
+                'name' => 'Type-C',
             ],
             [
-                'name' => 'Category 10',
+                'name' => '64GB',
+            ],
+            [
+                'name' => '128GB',
+            ],
+            [
+                'name' => '256GB',
+            ],
+            [
+                'name' => '512GB',
+            ],
+            [
+                'name' => 'Ram 6GB',
+            ],
+            [
+                'name' => 'Ram 8GB',
+            ],
+            [
+                'name' => 'Ram 12GB',
+            ],
+            [
+                'name' => '6+ Inches',
+            ],
+            [
+                'name' => '5.5 Inches',
             ]
         ];
         DB::table('categories')->insert($categories);
