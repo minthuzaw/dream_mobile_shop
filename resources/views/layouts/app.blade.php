@@ -104,7 +104,7 @@
 
     <script>
 
-            tinymce.init({
+        tinymce.init({
             selector: 'textarea#description', // Replace this CSS selector to match the placeholder element for TinyMCE
             plugins: 'table lists',
             toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | table'

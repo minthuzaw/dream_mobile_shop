@@ -16,7 +16,7 @@
                             <label for="title">Model<small class="text-danger"> *</small></label>
                             <div>
                                 <input type="text" id="model" class="form-control" style="" name="model"
-                                       placeholder="Enter Phone Model" value="{{old('model')}}"/>
+                                       placeholder="Enter Phone Model" value="{{old('model')}}" autofocus/>
                                 @error('model')
                                 <small class="text-danger">{{$message}}</small>
                                 @enderror

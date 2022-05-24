@@ -14,7 +14,7 @@
             <div class="control-group text-left">
                 <label for="name">Name</label>
                 <input type="text" class="form-control" id="name"
-                       placeholder="Someone" name="name" value="{{$user->name}}">
+                       placeholder="Someone" name="name" value="{{$user->name}}" autofocus>
                 @error('name')
                 <small class="text-danger">{{$message}}</small>
                 @enderror

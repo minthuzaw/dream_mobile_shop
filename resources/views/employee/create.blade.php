@@ -13,7 +13,7 @@
             <div class="control-group text-left">
                 <label for="name">Name</label>
                 <input type="text" class="form-control" id="name"
-                       placeholder="Someone" name="name" value="{{old('name')}}">
+                       placeholder="Someone" name="name" value="{{old('name')}}" autofocus>
                 @error('name')
                 <small class="text-danger">{{$message}}</small>
                 @enderror

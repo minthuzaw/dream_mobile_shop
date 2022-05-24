@@ -13,7 +13,7 @@
             @method('PUT')
             <div class="control-group text-left">
                 <label for="Brands Name"> Name</label>
-                <input type="text" name="name" class="col-md-4 col-lg-3 form-control" id="BrandsName" placeholder="Brand name" value="{!! $brand->name !!}" required>
+                <input type="text" name="name" class="col-md-4 col-lg-3 form-control" id="BrandsName" placeholder="Brand name" value="{!! $brand->name !!}" autofocus required>
             </div>
 
             <div class="control-group text-left mt-2">

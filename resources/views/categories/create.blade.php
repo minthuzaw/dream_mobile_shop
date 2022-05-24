@@ -13,7 +13,7 @@
             <div class="control-group text-left">
                 <label for="Categories Name">Category Name</label>
                 <input type="text" name="name" class="form-control mb-4" id="CategoriesName"
-                       placeholder="Categories name" required>
+                       placeholder="Categories name" autofocus required>
             </div>
             <div class="control-group  text-center mt-2">
                 <button class="btn btn-success">Add</button>

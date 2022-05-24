@@ -17,7 +17,7 @@
                             <label for="title">Model</label>
                             <div>
                                 <input type="text" id="model" class="form-control mb-4" name="model"
-                                       placeholder="Enter Phone Model" value="{!! $phone->model !!}" required>
+                                       placeholder="Enter Phone Model" value="{!! $phone->model !!}" autofocus required>
                             </div>
                         </div>
                     </div>
@@ -27,7 +27,7 @@
                             <div>
                                 <input type="text" id="name" class="form-control mb-4" name="name"
                                        placeholder="Enter Phone Name" rows="" value="{!! $phone->name !!}"
-                                       required></input>
+                                       required>
                             </div>
                         </div>
                     </div>
