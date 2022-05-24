@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Brand;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -21,10 +23,10 @@ class PhoneFactory extends Factory
             'model' => $this->faker->regexify('[A-Z]{1}[a-z]{4}[0-9]{4}'),
             'name' => $this->faker->word(),
             'stock' => $this->faker->randomDigitNotNull(),
-            'brand_id' => $this->faker->randomDigit(),
+            'brand_id' => Brand::all()->random()->id,
             'image' => Str::random(10),
             'unit_price' => $this->faker->randomFloat(2, 0, 100),
-            'user_id' => $this->faker->randomDigit(),
+            'user_id' => User::all()->random()->id,
             'description' => $this->faker->text(),
         ];
     }
