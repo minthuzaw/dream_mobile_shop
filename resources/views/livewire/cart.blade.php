@@ -1,35 +1,42 @@
 <div class="position-relative">
     <div class="d-flex justify-content-end my-3 align-items-center">
+
         <b>Total : {{$total}}</b>
-        <button class="btn btn-primary ml-5"
+        <button class="btn btn-primary ml-5" id="toggleIsCheckingOut"
                 {{-- Disabled checkout button When cashier does not select items --}}
-                wire:click="toggleIsCheckingOut" {{ !count($phones) ? 'disabled' : ''  }}> {{  $isCheckingOut ? 'Cancel' : 'Checkout'  }}
+                wire:click="toggleIsCheckingOut" {{ !count($phones) ? 'disabled' : ''  }}> {{  $isCheckingOut ? 'Cancel (Esc)' : 'Checkout (F12)'  }}
         </button>
     </div>
     @if(count($searchedPhones))
         <div class="card card-body position-absolute bg-secondary text-white"
              style="left: 0; right: 0;opacity: 90%;top: 100px">
-            <div class="border-bottom py-1 d-flex justify-content-between align-items-center">
-                <p style="width: 120px">Image</p>
-                <p class="w-25">Brand</p>
-                <p class="w-25">Name</p>
-                <p class="w-25">Stock</p>
-                <p class="w-25">Price</p>
-                <p class="">Action</p>
+            <div class="border-bottom py-1 d-flex justify-content-between">
+                <div class="" style="width: 10vw;margin-right: 0.5vw">
+                    <p>Image</p>
+                </div>
+                <p class="" style="width: 10vw;margin-right: 1vw">Brand</p>
+                <p class="" style="width: 15vw;margin-right: 2vw">Name</p>
+                <p class="" style="width: 15vw;margin-right: 2vw">Categories</p>
+                <p class="" style="width: 5vw;margin-right: 1vw">Stock</p>
+                <p class="" style="width: 5vw;margin-right: 1vw">Price</p>
+                <p class="" style="width: 5vw;">Action</p>
             </div>
             @foreach($searchedPhones as $phone)
-                <div class="border-bottom py-1 d-flex justify-content-center align-items-right">
-                    <img
-                        src="https://i.pravatar.cc/30?u={{ $phone->id }}"
-                        style="width: 50px; height: 50px"
-                        alt=""
-                        class="rounded-circle "
-                    />
-                    <p class="w-25 ml-5">{{$phone->brand->name}}</p>
-                    <p class="w-25">{{$phone->name}}</p>
-                    <p class="w-25">{{$phone->stock}}</p>
-                    <p class="w-25">{{$phone->unit_price}}</p>
-                    <button wire:click="addToCart({{$phone->id}})"><i class="fas fa-cart-plus"></i></button>
+                <div class="border-bottom py-1 d-flex justify-content-center">
+                    <div class="" style="width: 10vw;margin-right: 0.5vw">
+                        <img
+                            src="{{asset('storage/'.$phone->image)}}"
+                            style="width: 50%;height: 50%;"
+                            alt=""
+                            class="rounded-circle"
+                        >
+                    </div>
+                    <p class="" style="width: 10vw;margin-right: 1vw">{{$phone->brand->name}}</p>
+                    <p class="" style="width: 15vw;margin-right: 2vw">{{$phone->name}}</p>
+                    <p class="" style="width: 15vw;margin-right: 2vw">{{$phone->categories->pluck('name')->implode(', ')}}</p>
+                    <p class="" style="width: 5vw;margin-right: 1vw">{{$phone->stock}}</p>
+                    <p class="" style="width: 5vw;margin-right: 1vw">{{$phone->unit_price}}</p>
+                    <button wire:click="addToCart({{$phone->id}})"  class="btn btn-primary" style="width: 5vw"><i class="fas fa-cart-plus"></i></button>
                 </div>
             @endforeach
         </div>
@@ -40,7 +47,7 @@
 
             <div class="py-2">
                 <label for="customer_name">Name<span class="text-danger">*</span></label>
-                <input id="customer_name" class="form-control" wire:model="customer_name">
+                <input id="customer_name" class="form-control focus" wire:model="customer_name" autofocus placeholder="Press F2 To Focus">
                 @error('customer_name')
                 <small class="text-danger">{{ $message }}</small>
                 @enderror
@@ -67,12 +74,12 @@
                 @enderror
             </div>
             <div class="d-flex justify-content-end py-2">
-                <button class="btn btn-primary" wire:click="checkout">Submit</button>
+                <button class="btn btn-primary" wire:click="checkout">Checkout (F12)</button>
             </div>
         </div>
     @else
         <div class="d-flex">
-            <input wire:model="search" class="form-control mb-2">
+            <input wire:model="search" class="form-control mb-2 focus" autofocus placeholder="Press F2 To Search">
         </div>
         <table class="table align-middle mb-0 bg-white ">
             <thead class="bg-light">
@@ -83,7 +90,7 @@
                 <th>Unit Price</th>
                 <th>Quantity</th>
                 <th>Subtotal</th>
-                <th>Actions</th>
+                <th class="text-right">Actions</th>
             </tr>
             </thead>
             <tbody>
@@ -102,10 +109,10 @@
                     <td>{{$phone->unit_price}}</td>
                     <td>{{optional($phone->pivot)->quantity}}</td>
                     <td>{{optional($phone->pivot)->quantity * $phone->unit_price}}</td>
-                    <td>
-                        <button wire:click="decreaseItem({{$phone->id}})"><i class="fas fa-minus"></i></button>
-                        <button wire:click="increaseItem({{$phone->id}})"><i class="fas fa-plus"></i></button>
-                        <button wire:click="removeItem({{$phone->id}})"><i class="fas fa-trash"></i></button>
+                    <td class="text-right">
+                        <button wire:click="decreaseItem({{$phone->id}})" class="btn btn-primary"><i class="fas fa-minus"></i></button>
+                        <button wire:click="increaseItem({{$phone->id}})" class="btn btn-primary"><i class="fas fa-plus"></i></button>
+                        <button wire:click="removeItem({{$phone->id}})" class="btn btn-primary"><i class="fas fa-trash"></i></button>
                     </td>
                 </tr>
             @endforeach
@@ -113,3 +120,35 @@
         </table>
     @endif
 </div>
+<script>
+
+    document.addEventListener("keydown", function(e) {
+        if (e.key === 'F12'){
+            if (document.getElementById("toggleIsCheckingOut").disabled === false){
+                if (document.getElementById("toggleIsCheckingOut").innerText === "Checkout (F12)"){
+                    Livewire.emit('toggleIsCheckingOut');
+                }
+            }
+            if ( document.getElementById("toggleIsCheckingOut").innerText === "Cancel (Esc)"){
+                Livewire.emit('checkout');
+            }
+
+            e.preventDefault();
+        }
+        if (e.key === 'Escape'){
+            if (document.getElementById("toggleIsCheckingOut").disabled === false){
+                if (document.getElementById("toggleIsCheckingOut").innerText === "Cancel (Esc)"){
+                    Livewire.emit('toggleIsCheckingOut');
+                }
+            }
+            e.preventDefault();
+        }
+        if (e.key === 'F2'){
+            document.getElementsByClassName("focus")[0].focus();
+            document.getElementsByClassName("focus")[1].focus();
+
+            e.preventDefault();
+        }
+    });
+</script>
+

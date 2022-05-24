@@ -20,6 +20,8 @@ class Cart extends Component
     public $customer_email = '';
     public $customer_mobile_number = '';
     public $customer_address = '';
+    protected $listeners = ['toggleIsCheckingOut' => 'toggleIsCheckingOut', 'checkout' => 'checkout'];
+
 
     protected $rules = [
         'customer_name' => 'required|string|min:3',
@@ -73,7 +75,9 @@ class Cart extends Component
     public function searchPhones($search)
     {
         if ($search) {
-            $this->searchedPhones = Phone::where('name', 'LIKE', '%' . $search . '%')->where('stock', '>', 0)->limit(5)->get();
+            $this->searchedPhones = Phone::where('name', 'LIKE', '%' . $search . '%')->orWhereHas('categories', function ($query) use($search) {
+                $query->where('name', 'like', '%' . $search . '%');
+            })->where('stock', '>', 0)->limit(5)->get();
         } else {
             $this->searchedPhones = [];
         }
@@ -202,7 +206,7 @@ class Cart extends Component
             session()->flash('error', 'Something went wrong.');
         }
 
-        return redirect()->to(route('home', ['order' => $order->id]));
+        return redirect()->to(route('invoice', ['order' => $order->id]));
     }
 
     public function render()

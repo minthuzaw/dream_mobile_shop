@@ -32,7 +32,7 @@
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                                     <div class="custom-actions-btns mb-5">
                                         <button class="btn btn-primary" id="print" onclick="printButton()">
-                                            Print
+                                            Print (Ctrl+P / Cmd+P)
                                         </button>
                                     </div>
                                 </div>
@@ -130,7 +130,7 @@
     </div>
 </div>
 <script>
-    function printButton() {
+        function printButton() {
         var printButton = document.getElementById("pp");
         printButton.style.display = 'none';
         window.print();
