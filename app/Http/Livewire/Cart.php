@@ -61,7 +61,8 @@ class Cart extends Component
 
     protected function fetchPhonesInCart()
     {
-        $this->phones = \Auth::user()->phones;
+        $this->phones = \Auth::user()->phones()->with('brand')->get();
+
     }
 
     protected function calculateTotal()
@@ -77,7 +78,9 @@ class Cart extends Component
         if ($search) {
             $this->searchedPhones = Phone::where('name', 'LIKE', '%' . $search . '%')->orWhereHas('categories', function ($query) use($search) {
                 $query->where('name', 'like', '%' . $search . '%');
-            })->where('stock', '>', 0)->limit(5)->get();
+            })->where('stock', '>', 0)->with(['brand' => function($query) {
+                $query->select('id','name');
+            }])->limit(5)->get();
         } else {
             $this->searchedPhones = [];
         }
@@ -93,6 +96,7 @@ class Cart extends Component
             $this->checkStockAndIncreaseItem($phoneUser);
         } else {
             $stock = Phone::find($phoneId)->stock;
+            $brandName = Phone::find($phoneId)->brand->name;
             if ($stock) {
                 PhoneUser::create(['user_id' => $userId, 'phone_id' => $phoneId, 'quantity' => 1]);
             } else {
@@ -100,7 +104,7 @@ class Cart extends Component
             }
         }
 
-        // reset search after every adding to card
+        // reset search after every adding to cart
         $this->searchPhones($this->search = '');
 
         $this->sync();
