@@ -19,7 +19,7 @@
                                             <div class="form-group">
                                                 <label for="email">Email</label>
                                                 <input type="email" class="form-control" id="email"
-                                                       placeholder="someone@somewhere.com" name="email" value="{{old('email')}}">
+                                                       placeholder="someone@somewhere.com" name="email" value="{{old('email')}}" autofocus>
                                                 @error('email')
                                                 <small class="text-danger">{{$message}}</small>
                                                 @enderror
