@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('category_phone', function (Blueprint $table){
+        Schema::create('category_phone', function (Blueprint $table) {
             $table->foreignId('category_id')->constrained();
             $table->foreignId('phone_id')->constrained();
             $table->timestamps();

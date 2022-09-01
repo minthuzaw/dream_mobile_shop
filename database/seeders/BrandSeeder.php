@@ -2,10 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 
 class BrandSeeder extends Seeder
 {
@@ -16,7 +14,7 @@ class BrandSeeder extends Seeder
      */
     public function run()
     {
-        $brands =[
+        $brands = [
             [
                 'name' => 'Apple',
             ],
@@ -35,7 +33,6 @@ class BrandSeeder extends Seeder
             [
                 'name' => 'Sony',
             ],
-
 
         ];
         DB::table('brands')->insert($brands);

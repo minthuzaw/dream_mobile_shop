@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $cashier_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Order newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Order newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Order query()
@@ -33,10 +34,13 @@ class Order extends Model
 
     protected $guarded = [];
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
-    public function phones(){
-        return $this->belongsToMany(Phone::class)->withPivot('unit_price','quantity','sub_total')->using(OrderPhone::class);
+
+    public function phones()
+    {
+        return $this->belongsToMany(Phone::class)->withPivot('unit_price', 'quantity', 'sub_total')->using(OrderPhone::class);
     }
 }

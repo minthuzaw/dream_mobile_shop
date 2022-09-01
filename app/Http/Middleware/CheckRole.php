@@ -5,7 +5,6 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Collection;
 
 class CheckRole
 {
@@ -21,8 +20,8 @@ class CheckRole
         $roles = collect([$role1, $role2, $role3]);
         if ($roles->contains(Auth::user()->role)) {
             return $next($request);
-
         }
+
         return back();
     }
 }

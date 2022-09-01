@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -69,9 +68,8 @@ class CategorySeeder extends Seeder
             ],
             [
                 'name' => '5.5 Inches',
-            ]
+            ],
         ];
         DB::table('categories')->insert($categories);
-
     }
 }

@@ -2,12 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Brand;
-use App\Models\Category;
-use App\Models\Phone;
 use App\Models\User;
-use Database\Factories\UserFactory;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -31,8 +26,6 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-
         //User::factory(10)->create();
-
     }
 }

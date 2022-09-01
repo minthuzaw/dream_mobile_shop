@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $user_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Phone newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Phone newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Phone query()
@@ -37,26 +38,30 @@ class Phone extends Model
 
     protected $guarded = [];
 
-    public function brand(){
+    public function brand()
+    {
         return $this->belongsTo(Brand::class);
     }
 
-    public function categories(){
+    public function categories()
+    {
         return $this->belongsToMany(Category::class);
     }
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function scopeFilter($query, $filter){
-        $query->when($filter['search'] ?? false, function($query, $search){
+    public function scopeFilter($query, $filter)
+    {
+        $query->when($filter['search'] ?? false, function ($query, $search) {
             $query->where('name', 'LIKE', '%'.$search.'%')
                   ->orWhere('model', 'LIKE', '%'.$search.'%');
         });
 
-        $query->when($filter['brand'] ?? false, function($query, $brand){
-            $query->whereHas('brand', function($query) use ($brand){
+        $query->when($filter['brand'] ?? false, function ($query, $brand) {
+            $query->whereHas('brand', function ($query) use ($brand) {
                 $query->where('name', $brand);
             });
         });

@@ -33,6 +33,7 @@ class PhoneCreateRequest extends FormRequest
             'user_id' => 'required',
         ];
     }
+
     public function messages()
     {
         return [

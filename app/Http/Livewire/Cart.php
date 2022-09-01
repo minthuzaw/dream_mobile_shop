@@ -11,17 +11,24 @@ use Livewire\Component;
 class Cart extends Component
 {
     public $isCheckingOut = false;
+
     public $search = '';
+
     public $searchedPhones = [];
+
     public $phones = [];
+
     public $total = 0;
 
     public $customer_name = '';
-    public $customer_email = '';
-    public $customer_mobile_number = '';
-    public $customer_address = '';
-    protected $listeners = ['toggleIsCheckingOut' => 'toggleIsCheckingOut', 'checkout' => 'checkout'];
 
+    public $customer_email = '';
+
+    public $customer_mobile_number = '';
+
+    public $customer_address = '';
+
+    protected $listeners = ['toggleIsCheckingOut' => 'toggleIsCheckingOut', 'checkout' => 'checkout'];
 
     protected $rules = [
         'customer_name' => 'required|string|min:3',
@@ -29,7 +36,6 @@ class Cart extends Component
         'customer_mobile_number' => 'nullable|string|max:11',
         'customer_address' => 'nullable|string|max:255',
     ];
-
 
     public function mount()
     {
@@ -44,7 +50,7 @@ class Cart extends Component
 
     public function toggleIsCheckingOut()
     {
-        $this->isCheckingOut = !$this->isCheckingOut;
+        $this->isCheckingOut = ! $this->isCheckingOut;
     }
 
     public function clearSearch()
@@ -57,7 +63,6 @@ class Cart extends Component
     {
         $this->searchPhones($value);
     }
-
 
     protected function fetchPhonesInCart()
     {
@@ -75,8 +80,8 @@ class Cart extends Component
     public function searchPhones($search)
     {
         if ($search) {
-            $this->searchedPhones = Phone::where('name', 'LIKE', '%' . $search . '%')->orWhereHas('categories', function ($query) use($search) {
-                $query->where('name', 'like', '%' . $search . '%');
+            $this->searchedPhones = Phone::where('name', 'LIKE', '%'.$search.'%')->orWhereHas('categories', function ($query) use ($search) {
+                $query->where('name', 'like', '%'.$search.'%');
             })->where('stock', '>', 0)->limit(5)->get();
         } else {
             $this->searchedPhones = [];
@@ -148,7 +153,7 @@ class Cart extends Component
     public function checkout()
     {
         $stockErrors = collect();
-        collect($this->phones)->each(function ($phone) use ($stockErrors){
+        collect($this->phones)->each(function ($phone) use ($stockErrors) {
             $phoneUser = PhoneUser::where(['user_id' => \Auth::id(), 'phone_id' => $phone->id])->first();
             if ($phoneUser->quantity > $phone->stock) {
                 $stockErrors->push("There are only {$phone->stock} stock left for {$phone->name}");
@@ -163,6 +168,7 @@ class Cart extends Component
 
             $stockErrorHtml = "<ul>$stockErrorHtml</ul>";
             session()->flash('error', $stockErrorHtml);
+
             return redirect()->route('cart');
         }
 

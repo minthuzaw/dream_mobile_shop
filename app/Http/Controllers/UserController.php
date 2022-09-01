@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
-use Maatwebsite\Excel\Excel;
 use Yajra\DataTables\Facades\DataTables;
 
 class UserController extends Controller
@@ -22,38 +21,39 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->ajax()){
+        if ($request->ajax()) {
             $employees = User::query(); //fetching user query builder
 
             return DataTables::of($employees)
-                ->editColumn('updated_at', function($employee){
+                ->editColumn('updated_at', function ($employee) {
                     return Carbon::parse($employee->updated_at)->format('Y-m-d');
                 })
-                ->addColumn('action', function($employee){
+                ->addColumn('action', function ($employee) {
                     $action = '<a href="'.route('users.edit', $employee->id).'" class="text-warning p-2" style="font-size: 20px"><i class="far fa-edit"></i></a>';
                     $deleteIcon = '<a href="#" class="text-danger delete-btn" data-id="'.$employee->id.'" style="font-size: 20px"><i class="fas fa-trash-alt"></i></a>';
 
-                    if (!$employee->isAdmin()) {
+                    if (! $employee->isAdmin()) {
                         $action .= $deleteIcon;
                     }
 
-                    return '<div class="action-icon">' . $action .'</div>';
+                    return '<div class="action-icon">'.$action.'</div>';
                 })
-                ->editColumn('role', function($employee){
-                    if($employee->isAdmin()){
+                ->editColumn('role', function ($employee) {
+                    if ($employee->isAdmin()) {
                         return '<span class="badge rounded-pill bg-primary text-white">'.$employee->role.'</span>';
-                    }elseif($employee->isCashier()){
+                    } elseif ($employee->isCashier()) {
                         return '<span class="badge rounded-pill bg-warning text-white">'.$employee->role.'</span>';
-                    }else{
+                    } else {
                         return '<span class="badge rounded-pill bg-info text-white">'.$employee->role.'</span>';
                     }
                 })
-                ->rawColumns(['role','action'])
+                ->rawColumns(['role', 'action'])
                 ->make(true);
         }
 
         $users = User::all();
-        return view('employee.index',compact('users'));
+
+        return view('employee.index', compact('users'));
     }
 
     /**
@@ -92,6 +92,7 @@ class UserController extends Controller
         ]);
 
         event(new Registered($user));
+
         return redirect()->route('users.index')->with('success', 'User Created Successfully');
     }
 
@@ -115,7 +116,8 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        return view('employee.edit',compact('user'));
+
+        return view('employee.edit', compact('user'));
     }
 
     /**
@@ -144,20 +146,18 @@ class UserController extends Controller
         ]);
 
         return redirect()->route('users.index')->with('updated', 'User updated successfully');
-
     }
 
     public function destroy($id)
     {
-
         $user = User::find($id);
         if ($user->role == 'admin') {
             return redirect()->route('users.index')->with('error', 'You cannot delete admin');
-        }else{
+        } else {
             $user->delete();
+
             return 'success';
         }
-
     }
 
     public function export()

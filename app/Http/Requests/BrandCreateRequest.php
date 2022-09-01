@@ -25,7 +25,7 @@ class BrandCreateRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'image' => ['required', 'image']
+            'image' => ['required', 'image'],
         ];
     }
 }

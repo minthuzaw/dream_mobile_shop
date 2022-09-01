@@ -31,12 +31,11 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
-        if (Auth::user()->isAdmin()){
+        if (Auth::user()->isAdmin()) {
             return redirect()->route('dashboard');
-        }else if(Auth::user()->isCashier()){
+        } elseif (Auth::user()->isCashier()) {
             return redirect()->route('cart');
-        }
-        else{
+        } else {
             return redirect(RouteServiceProvider::HOME);
         }
     }

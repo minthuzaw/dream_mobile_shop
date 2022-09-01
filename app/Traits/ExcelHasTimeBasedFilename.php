@@ -4,7 +4,7 @@ namespace App\Traits;
 
 use Illuminate\Support\Carbon;
 
-Trait ExcelHasTimeBasedFilename
+trait ExcelHasTimeBasedFilename
 {
     public function __construct()
     {
